@@ -29,8 +29,14 @@ Route::get('/home', function () {
     if (Auth::check()) {
         if (Auth::user()->role == 'admin') {
             return redirect('/admin');
-        } else {
+        }else if (Auth::user()->role == 'user') {
             return redirect('/user');
+        }else if (Auth::user()->role == 'project') {
+            return redirect('/project');
+        }else if (Auth::user()->role == 'digiport') {
+            return redirect('/digiport');
+        } else {
+            return redirect('/planning');
         }
     } else {
         return redirect('');
@@ -42,7 +48,14 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin',[AdminController::class,'index']); 
     Route::get('/admin',[AdminController::class,'admin'])->middleware('userAccess:admin')->name('admin'); 
     Route::get('/user',[AdminController::class,'user'])->middleware('userAccess:user')->name('user'); 
+    Route::get('/project',[AdminController::class,'project'])->middleware('userAccess:project')->name('project');
+    Route::get('/digiport',[AdminController::class,'digiport'])->middleware('userAccess:digiport')->name('digiport');
+    Route::get('/planning',[AdminController::class,'planning'])->middleware('userAccess:planning')->name('planning');   
 });
+
+//----------CRA-----------
+Route::get('/viewcra/{id}',[FormcraController::class, 'viewcra'])->name('viewcra');
+
 
 //HALAMAN FORM CRA
 Route::get('/tambahrca',[FormrequestController::class, 'tambahchangerequest'])->name('tambahrca');

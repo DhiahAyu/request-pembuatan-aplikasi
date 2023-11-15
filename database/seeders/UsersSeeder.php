@@ -26,6 +26,24 @@ class UsersSeeder extends Seeder
                 'role'=>'user',                
                 'password'=>bcrypt('12345'),
             ],
+            [
+                'name'=>'project',
+                'email'=>'project@gmail.com',
+                'role'=>'project',                
+                'password'=>bcrypt('12345'),
+            ],
+            [
+                'name'=>'digiport',
+                'email'=>'digiport@gmail.com',
+                'role'=>'digiport',                
+                'password'=>bcrypt('12345'),
+            ],
+            [
+                'name'=>'planning',
+                'email'=>'planning@gmail.com',
+                'role'=>'planning',                
+                'password'=>bcrypt('12345'),
+            ],
             
         ];
 

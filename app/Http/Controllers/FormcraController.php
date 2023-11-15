@@ -20,8 +20,8 @@ class FormcraController extends Controller
 
     public function insertdatacra(Request $request){
         // Convert array values to comma-separated strings
-        $impactAreas = implode(',', $request->input('impact_areas'));
-        $priority = implode(',', $request->input('priority'));
+        $impactAreas = implode(' , ', $request->input('impact_areas'));
+        $priority = implode(' , ', $request->input('priority'));
     
         // Prepare data for insertion
         $data = $request->except(['submit', '_token']);
@@ -44,5 +44,15 @@ class FormcraController extends Controller
         // Redirect ke halaman index dengan pesan success
         return redirect()->route('indexMethod')->with('success', 'Data berhasil ditambahkan');
     }
+
+    //HALAMAN VIEW CRA
+    public function viewcra($id){
+        $data = Formcra::find($id);
+        $selectedImpactAreas = explode(' , ', $data->impact_areas);
+        $selectedPriority = explode(' , ', $data->priority);
+    
+        return view('form_cra_readonly', compact('data', 'selectedImpactAreas', 'selectedPriority'));
+    }
+    
     
 }

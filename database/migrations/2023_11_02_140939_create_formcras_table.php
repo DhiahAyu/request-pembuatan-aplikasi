@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('additional')->nullable();
             $table->timestamps();
             $table->string('actioncra');
+            $table->string('kirimke')->nullable();
         });
     }
 

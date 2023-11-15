@@ -27,8 +27,14 @@ class SessionController extends Controller
         if(Auth::attempt($infologin)){
             if(Auth::user()->role =='admin'){
                 return redirect('/admin');
-            }else{
+            }else if(Auth::user()->role =='user'){
                 return redirect('/user');
+            }else if(Auth::user()->role =='project'){
+                return redirect('/project');
+            }else if(Auth::user()->role =='digiport'){
+                return redirect('/digiport');
+            }else{
+                return redirect('/planning');
             }
             // return redirect('/admin');
         }else{
