@@ -11,4 +11,19 @@ class Formcra extends Model
 
     protected $guarded =[];
     protected $table = 'formcras';
+
+    public function rfc()
+    {
+        return $this->belongsTo(Formrequest::class);
+    }
+
+    public function changeMajors()
+    {
+        return $this->hasMany(ChangeMajor::class);
+    }
+
+    public function changeMinors()
+    {
+        return $this->hasMany(ChangeMinor::class);
+    }
 }

@@ -10,12 +10,19 @@ class Formsrs extends Model
     use HasFactory;
 
     // protected $guarded =[];
-    // protected $table = 'formsrs';
+    protected $table = 'formsrs';
 
-    protected $fillable = [
-        'nama_modul',
-        'requirement',
-    ];
+    protected $fillable = ['request_id'];
+
+    public function rfc()
+    {
+        return $this->belongsTo(Formrequest::class);
+    }
+
+    public function moduls()
+    {
+        return $this->hasMany(Modul::class);
+    }
 
     
 }

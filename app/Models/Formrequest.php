@@ -11,4 +11,21 @@ class Formrequest extends Model
 
     protected $guarded =[];
     protected $table = 'formrequests';
+
+    // -----RELASI ANTAR TABLE-----
+
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class);
+    // }
+
+    public function cra()
+    {
+        return $this->hasOne(Formcra::class);
+    }
+
+    public function srs()
+    {
+        return $this->hasOne(Formsrs::class);
+    }
 }

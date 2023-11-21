@@ -13,9 +13,11 @@ return new class extends Migration
 {
     Schema::create('formsrs', function (Blueprint $table) {
         $table->id();
-        $table->string('nama_modul')->nullable();
-        $table->text('requirement')->nullable(); // Menggunakan tipe data text untuk requirement
-        $table->timestamps();
+            $table->unsignedBigInteger('request_id'); // Relasi ke tabel rfcs
+            $table->timestamps();
+            
+            // Menambahkan foreign key ke rfc_id
+            $table->foreign('request_id')->references('id')->on('formrequests')->onDelete('cascade');
     });
 }
 

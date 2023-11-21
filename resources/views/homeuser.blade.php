@@ -63,7 +63,7 @@
                                             <a href="#" class="btn btn-danger delete  data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
                                         @endif
                                         @if ($row->status=='Approved')
-                                            <a href="#" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> SRS</i></a>
+                                            <a href="/tambahsrs/{{$row->id}}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> SRS</i></a>
                                         @endif
                                         @if ($row->status=='Pending')
                                             <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>

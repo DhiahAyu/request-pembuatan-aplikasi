@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formcra;
+use App\Models\Formrequest;
 use Illuminate\Http\Request;
 
 class FormcraController extends Controller
@@ -14,14 +15,18 @@ class FormcraController extends Controller
          return view('formcra', compact('data'));
     }
 
-    public function tambahdatacra(){
-        return view ('tambahdatacra');
+    public function tambahdatacra($id){
+        $formRequest = Formrequest::find($id);
+        return view ('tambahdatacra', compact('formRequest'));
+        // return view ('tambahdatacra');
     }
 
     public function insertdatacra(Request $request){
         // Convert array values to comma-separated strings
         $impactAreas = implode(' , ', $request->input('impact_areas'));
         $priority = implode(' , ', $request->input('priority'));
+
+        $data['request_id'] = $request->input('request_id');
     
         // Prepare data for insertion
         $data = $request->except(['submit', '_token']);

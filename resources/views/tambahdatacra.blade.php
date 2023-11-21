@@ -16,6 +16,7 @@
         </tr>
         <form action="/insertdatacra" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="request_id" value="{{ $formRequest->id }}">
         <tr>
             <td colspan="2">
                 <div class="p-2" align="center"><strong>[CR.XXX]</strong> - [CHANGE REQUEST NAME]</div>

@@ -55,7 +55,7 @@
                                     @endif
                                     <td>
                                         @if ($row->status=='Approved')
-                                            <a href="/tambahdatacra" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA</i></a>
+                                        <a href="/tambahdatacra/{{ $row->id }}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA</i></a>
                                         @endif
                                         @if ($row->status=='Pending')
                                         <a href="{{ route('formrequestapprove', $row->id) }}" class="btn btn-success">Approve</a>

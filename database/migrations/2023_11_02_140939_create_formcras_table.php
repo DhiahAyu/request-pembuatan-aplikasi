@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('formcras', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('request_id'); // Relasi ke tabel rfcs
             $table->string('cr_analyst')->nullable();
             $table->string('originator_name')->nullable();
             $table->string('data_owner')->nullable();
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('actioncra');
             $table->string('kirimke')->nullable();
+            $table->foreign('request_id')->references('id')->on('formrequests')->onDelete('cascade');
         });
     }
 

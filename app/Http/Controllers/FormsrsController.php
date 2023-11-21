@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formsrs;
+use App\Models\Formrequest;
 use Illuminate\Http\Request;
 
 class FormsrsController extends Controller
@@ -14,8 +15,9 @@ class FormsrsController extends Controller
          return view('formcra', compact('data'));
     }
 
-    public function tambahsrs(){
-        return view ('tambahsrs');
+    public function tambahsrs($id){
+        $formRequest = Formrequest::find($id);
+        return view ('tambahsrs', compact('formRequest'));
     }
 
     // public function insertdatasrs(Request $request){
@@ -34,6 +36,8 @@ class FormsrsController extends Controller
         // dd($_POST[]);
         // var_dump($_POST['requirement']);
         // exit();       
+        $data['request_id'] = $request->input('request_id');
+
         $nama_modul = $request->input("nama_modul");
         foreach ($request->requirement as $requirement) {
             Formsrs::create([

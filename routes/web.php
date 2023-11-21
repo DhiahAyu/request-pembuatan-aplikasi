@@ -6,6 +6,8 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FormcraController;
 use App\Http\Controllers\FormsrsController;
+use App\Http\Controllers\ModulController;
+use App\Http\Controllers\SrsController;
 use App\Models\Formsrs;
 
 /*
@@ -95,7 +97,7 @@ Route::get('/formrequest/reject/{id}', [FormrequestController::class, 'reject'])
 
 // Route::get('/requests',[FormcraController::class, 'index'])->name('requests');
 Route::get('/indexMethod', [FormcraController::class, 'indexMethod'])->name('indexMethod');
-Route::get('/tambahdatacra',[FormcraController::class, 'tambahdatacra'])->name('tambahdatacra');
+Route::get('/tambahdatacra/{id}',[FormcraController::class, 'tambahdatacra'])->name('tambahdatacra');
 Route::post('/insertdatacra',[FormcraController::class, 'insertdatacra'])->name('insertdatacra');
 
 Route::post('/saveasdraftcra', [FormcraController::class, 'saveasdraftcra'])->name('saveasdraftcra');
@@ -112,5 +114,9 @@ Route::post('/saveasdraftcra', [FormcraController::class, 'saveasdraftcra'])->na
 Route::resource('srsadd', Formsrs::class);
 
 Route::get('/indexsrs', [FormsrsController::class, 'indexsrs'])->name('indexsrs');
-Route::get('/tambahsrs',[FormsrsController::class, 'tambahsrs'])->name('tambahsrs');
+Route::get('/tambahsrs/{id}',[FormsrsController::class, 'tambahsrs'])->name('tambahsrs');
 Route::post('/insertdatasrs',[FormsrsController::class, 'insertdatasrs'])->name('insertdatasrs');
+
+//-----------SRS--------//
+Route::get('/srs/create', [SrsController::class, 'create'])->name('srs.create');
+Route::post('/modul/store', [SrsController::class, 'store'])->name('modul.store');

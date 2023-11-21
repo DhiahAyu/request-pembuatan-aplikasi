@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 // Model Requirement.php
 class Requirement extends Model
 {
-    protected $fillable = ['detail'];
+    protected $table = 'requirements';
+    protected $fillable = ['modul_id', 'requirement', 'mockup'];
 
-    public function formsrs()
+    public function modul()
     {
-        return $this->belongsTo(Formsrs::class);
+        return $this->belongsTo(Modul::class);
     }
 }
