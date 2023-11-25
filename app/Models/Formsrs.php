@@ -21,7 +21,7 @@ class Formsrs extends Model
 
     public function moduls()
     {
-        return $this->hasMany(Modul::class);
+        return $this->hasMany(Modul::class, 'srs_id');
     }
 
     
