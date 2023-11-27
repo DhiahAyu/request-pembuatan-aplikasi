@@ -33,11 +33,11 @@
                                       <td>{{ $modul->nama }}</td>
                                       <td>{{ $requirement->requirement }}</td>
                                       <td>
-                                        @if ($requirement->mockup)
-                                        <img src="{{ asset($requirement->mockup) }}" alt="Mockup Image" width="100">
-                                        @else
-                                            No Mockup
-                                        @endif
+                                          @if ($requirement->mockup)
+                                          <img src="{{ asset($requirement->mockup) }}" alt="Mockup Image" width="100">
+                                          @else
+                                              No Mockup
+                                          @endif
                                       </td>
                                   </tr>
                               @empty

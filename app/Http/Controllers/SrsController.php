@@ -19,42 +19,57 @@ class SrsController extends Controller
         return view ('tambahsrs', compact('formRequest'));
     }
 
-    public function store(Request $request)
-    {
+    
+    public function  getModul(){
+
         try {
-            // Validasi data input
-            $validatedData = $request->validate([
-                'modul.*.nama_modul' => 'required',
-                'modul.*.requirements.*.requirement' => 'required',
-                'modul.*.requirements.*.mockup'=> 'file|max:10240',
+            $modul = Formsrs::with('moduls.requirements')->get();
+            // dd($modul);
+            return view('formsrs', compact('modul'));
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            // return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
+
+            dd($e->getMessage());
+}
+}
+
+
+public function store(Request $request)
+{
+    try {
+        // Validasi data input
+        $validatedData = $request->validate([
+            'modul.*.nama_modul' => 'required',
+            'modul.*.requirements.*.requirement' => 'required',
+            'modul.*.requirements.*.mockup' => 'file|mimes:jpeg,png,jpg,gif,svg|max:10240',
+        ]);
+
+        // Simpan data SRS
+        $srs = new Formsrs([
+            'request_id' => $request->input('request_id'),
+        ]);
+
+        $srs->save();
+
+        // Simpan data Modul dan Requirement
+        foreach ($validatedData['modul'] as $modulData) {
+            // Simpan data Modul
+            $modul = new Modul([
+                'nama' => $modulData['nama_modul'],
+                'srs_id' => $srs->id,
             ]);
 
-            // Simpan data SRS
-            $srs = new Formsrs([
-                'request_id' => $request->input('request_id'),
-            ]);
+            $modul->save();
 
-            $srs->save();
-
-            // Simpan data Modul dan Requirement
-            foreach ($validatedData['modul'] as $modulData) {
-                // Simpan data Modul
-                $modul = new Modul([
-                    'nama' => $modulData['nama_modul'],
-                    'srs_id' => $srs->id,
+            // Simpan data Requirement
+            foreach ($modulData['requirements'] as $requirementData) {
+                $requirementModel = new Requirement([
+                    'requirement' => $requirementData['requirement'],
+                    'modul_id' => $modul->id,
                 ]);
 
-                $modul->save();
-
-                // Simpan data Requirement
-                foreach ($modulData['requirements'] as $requirementData) {
-                    $requirementModel = new Requirement([
-                        'requirement' => $requirementData['requirement'],
-                        'mockup' => $requirementData['mockup'],
-                        'modul_id' => $modul->id,
-                    ]);
-
-                    $fileMockup = $requirementData['mockup'];
+                $fileMockup = $requirementData['mockup'];
 
                 if ($fileMockup) {
                     $fileNameMockup = $fileMockup->getClientOriginalName();
@@ -64,29 +79,14 @@ class SrsController extends Controller
                 }
 
                 $requirementModel->save();
-                }
             }
-            // dd($requirementModel);
-            // Redirect atau berikan respons sesuai kebutuhan
-            return redirect()->route('user')->with('success', 'Data SRS berhasil disimpan.');
-        } catch (\Exception $e) {
-            \Log::error($e->getMessage());
-            // return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
         }
-        dd($validatedData);
+        // Redirect atau berikan respons sesuai kebutuhan
+        return redirect()->route('user')->with('success', 'Data SRS berhasil disimpan.');
+    } catch (\Exception $e) {
+        \Log::error($e->getMessage());
+        // return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
     }
-
-    public function  getModul(){
-
-        try {
-            $modul = Formsrs::with('moduls.requirements')->get();
-            // dd($modul);
-            return view('formsrs', compact('modul'));
-        } catch (\Exception $e) {
-            \Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
-        }
-    
-    }
-
+    dd($validatedData);
+}
 }

@@ -12,11 +12,11 @@ class Modul extends Model
 
     public function srs()
     {
-        return $this->belongsTo(Formsrs::class,'srs_id');
+        return $this->belongsTo(Formsrs::class, 'srs_id');
     }
 
     public function requirements()
     {
-        return $this->hasMany(Requirement::class,'modul_id');
+        return $this->hasMany(Requirement::class, 'modul_id');
     }
 }

@@ -30,7 +30,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    let countermodul = 0;
+    let countermodul = 1;
 
     $(document).ready(function () {
         $('#addNamaModul').click(function () {
@@ -64,16 +64,14 @@
             let counterReq = $('#tambah_req-' + modulId + ' textarea').length + 1;
 
             let newRequirement = `
-            <div class="form-group mb-3 row" style="margin-top: 10px;">
-                <label class="col-3" style="text-align:center; vertical-align: middle;">Requirement ke- ${counterReq}</label>
-                <div class="col-9">
-                    <textarea class="form-control" name="modul[${modulId}][requirements][${counterReq}][requirement]" id="message-text-${modulId}-${counterReq}" required></textarea>
-                    <input type="file" name="modul[${modulId}][requirements][${counterReq}][mockup]" id="mockup-${modulId}-${counterReq}" aria-describedby="inputFileAddon" aria-label="Upload" accept="image/*" required>
-                </div>
-            </div>`;
+                <div class="form-group mb-3 row" style="margin-top: 10px;">
+                    <label class="col-3" style="text-align:center; vertical-align: middle;">Requirement ke- ${counterReq}</label>
+                    <div class="col-9">
+                        <textarea class="form-control" name="modul[${id}][requirements][][requirement]" id="message-text-${id}-${counterReq}"></textarea>
+                    </div>
+                </div>`;
 
-
-            $('#tambah_req-' + modulId).append(newRequirement);
+            $('#tambah_req-' + id).append(newRequirement);
         });
 
         $(document).on('click', '.removeReqBtn', function () {
@@ -89,26 +87,8 @@
 
         // Other JavaScript logic for form handling...
 
-        document.getElementById('submitButton').addEventListener('click', function (e) {
-          e.preventDefault();
-          // Lakukan apa yang Anda inginkan saat tombol "Submit" ditekan
-          // Ini bisa termasuk pengiriman data ke rute /insertdata atau rute yang sesuai dengan fetch API.
-          fetch('/insertdata', {
-            method: 'POST',
-            body: new FormData(document.querySelector('form')),
-          })
-          .then(response => {
-            if (response.ok) {
-              // Proses response jika berhasil, seperti menampilkan pesan sukses
-              alert('Data berhasil disubmit');
-            } else {
-              // Proses response jika terjadi kesalahan
-              alert('Terjadi kesalahan saat submit data');
-            }
-          });
-      });
-
     });
 </script>
+
 
 @endsection
