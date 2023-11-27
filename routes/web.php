@@ -118,7 +118,6 @@ Route::get('/tambahsrs/{id}',[SrsController::class, 'tambahsrs'])->name('tambahs
 // Route::post('/insertdatasrs',[FormsrsController::class, 'insertdatasrs'])->name('insertdatasrs');
 
 //-----------SRS--------//
-Route::get('/srs/create', [SrsController::class, 'create'])->name('srs.create');
 Route::post('/modul/store', [SrsController::class, 'store'])->name('modul.store');
 
 // Route::get('/getdata-modul', [SrsController::class, 'getModul']);

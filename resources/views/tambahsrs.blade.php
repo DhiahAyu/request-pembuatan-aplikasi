@@ -29,7 +29,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+{{-- <script>
     let countermodul = 0;
 
     $(document).ready(function () {
@@ -68,7 +68,7 @@
                 <label class="col-3" style="text-align:center; vertical-align: middle;">Requirement ke- ${counterReq}</label>
                 <div class="col-9">
                     <textarea class="form-control" name="modul[${modulId}][requirements][${counterReq}][requirement]" id="message-text-${modulId}-${counterReq}" required></textarea>
-                    <input type="file" name="modul[${modulId}][requirements][${counterReq}][mockup]" id="mockup-${modulId}-${counterReq}" aria-describedby="inputFileAddon" aria-label="Upload" accept="image/*" required>
+                    <input type="file" name="modul[${modulId}][requirements][${counterReq}][mockup]" id="mockup-${modulId}-${counterReq}" aria-describedby="inputFileAddon" aria-label="Upload" required>
                 </div>
             </div>`;
 
