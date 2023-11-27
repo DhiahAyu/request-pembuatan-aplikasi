@@ -5,18 +5,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Log;
 use App\Models\Formsrs;
 use App\Models\Modul;
 use App\Models\Requirement;
 use App\Models\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class SrsController extends Controller
 {
-    public function create(Request $request)
-    {
-        $formRequest = FormRequest::find($request->input('request_id'));
-
-        return view('homeuser', compact('formRequest'));
+    public function tambahsrs($id){
+        $formRequest = Formrequest::find($id);
+        return view ('tambahsrs', compact('formRequest'));
     }
 
     public function store(Request $request)
@@ -26,6 +26,7 @@ class SrsController extends Controller
             $validatedData = $request->validate([
                 'modul.*.nama_modul' => 'required',
                 'modul.*.requirements.*.requirement' => 'required',
+                'modul.*.requirements.*.mockup'=> 'file|max:10240',
             ]);
 
             // Simpan data SRS
@@ -49,19 +50,43 @@ class SrsController extends Controller
                 foreach ($modulData['requirements'] as $requirementData) {
                     $requirementModel = new Requirement([
                         'requirement' => $requirementData['requirement'],
+                        'mockup' => $requirementData['mockup'],
                         'modul_id' => $modul->id,
                     ]);
 
-                    $requirementModel->save();
+                    $fileMockup = $requirementData['mockup'];
+
+                if ($fileMockup) {
+                    $fileNameMockup = $fileMockup->getClientOriginalName();
+                    $fileMockup->storeAs('public/gambarrequirement', $fileNameMockup);
+                    // $requirementModel->mockup = 'gambarrequirement/' . $fileNameMockup;
+                    $requirementModel->mockup = 'storage/gambarrequirement/' . $fileNameMockup;
+                }
+
+                $requirementModel->save();
                 }
             }
-
+            // dd($requirementModel);
             // Redirect atau berikan respons sesuai kebutuhan
-            return redirect()->route('srs.create')->with('success', 'Data SRS berhasil disimpan.');
+            return redirect()->route('user')->with('success', 'Data SRS berhasil disimpan.');
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
             // return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
         }
         dd($validatedData);
     }
+
+    public function  getModul(){
+
+        try {
+            $modul = Formsrs::with('moduls.requirements')->get();
+            // dd($modul);
+            return view('formsrs', compact('modul'));
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
+        }
+    
+    }
+
 }

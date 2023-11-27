@@ -23,9 +23,13 @@ class FormrequestController extends Controller
 
     //HALAMAN HOME ADMIN
     public function homeadmin() {
-        $data = Formrequest::whereIn('status', ['Pending', 'Approved', 'Rejected'])->get();
-        return view('homeadmin', compact('data'));
+        $data = Formrequest::whereIn('status', ['Pending', 'Approved', 'Rejected'])
+            ->with('formcra') // Memuat relasi Formcra
+            ->get();
+        $cra = Formcra::all();
+        return view('homeadmin', compact('data', 'cra'));
     }
+
 
     //HALAMAN FORM REQUEST
     public function tambahrequest(){

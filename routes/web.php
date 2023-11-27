@@ -112,11 +112,20 @@ Route::post('/saveasdraftcra', [FormcraController::class, 'saveasdraftcra'])->na
 // Route::post('/insertdatacra',[FormcraController::class, 'insertdatacra'])->name('insertdatacra');
 
 Route::resource('srsadd', Formsrs::class);
-
-Route::get('/indexsrs', [FormsrsController::class, 'indexsrs'])->name('indexsrs');
-Route::get('/tambahsrs/{id}',[FormsrsController::class, 'tambahsrs'])->name('tambahsrs');
-Route::post('/insertdatasrs',[FormsrsController::class, 'insertdatasrs'])->name('insertdatasrs');
-
 //-----------SRS--------//
-Route::get('/srs/create', [SrsController::class, 'create'])->name('srs.create');
 Route::post('/modul/store', [SrsController::class, 'store'])->name('modul.store');
+Route::get('/tambahsrs/{id}',[SrsController::class, 'tambahsrs'])->name('tambahsrs');
+Route::get('/formsrs', [SrsController::class, 'getModul']);
+Route::get('gambarrequirement/{filename}', function ($filename) {
+    $path = public_path('gambarrequirement/' . $filename);
+
+    // Jika file tidak ditemukan, kirim response 404
+    if (!file_exists($path)) {
+        abort(404);
+    }
+        // Baca file dan kirimkan sebagai response dengan tipe konten yang sesuai
+        $file = file_get_contents($path);
+        $type = mime_content_type($path);
+    
+        return response($file)->header('Content-Type', $type);
+    })->name('gambarrequirement');
