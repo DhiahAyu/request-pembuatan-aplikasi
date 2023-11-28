@@ -44,6 +44,9 @@ class FormcraController extends Controller
         // Insert data
         try {
             $formcra = Formcra::create($data);
+            $formrequest = Formrequest::find($request->input('request_id'));
+            $formrequest->formsfill = '2/3';
+            $formrequest->save();
     
             // Insert data Justification Major
             foreach ($request->input('justification_major') as $justificationMajor) {

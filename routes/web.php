@@ -91,9 +91,14 @@ Route::get('/deletedata/{id}',[FormrequestController::class, 'deletedata'])->nam
 //DOWNLOAD PDF
 Route::get('/download_pdf/{id}',[FormrequestController::class, 'downloadPdf'])->name('downloadPdf');
 
+// Route::post('/send-rejected-message',[FormrequestController::class, 'sendRejectedMessage'])->name('rejectedMessage');
+Route::post('/pesanreject/{id}', [FormrequestController::class, 'pesanreject'])->name('pesanreject');
+
+
+
 // APPROVE & REJECT
 Route::get('/formrequest/approve/{id}', [FormrequestController::class, 'approve'])->name('formrequestapprove');
-Route::get('/formrequest/reject/{id}', [FormrequestController::class, 'reject'])->name('formrequestreject');
+Route::post('/formrequest/reject/{id}', [FormrequestController::class, 'reject'])->name('formrequestreject');
 
 // Route::get('/requests',[FormcraController::class, 'index'])->name('requests');
 Route::get('/indexMethod', [FormcraController::class, 'indexMethod'])->name('indexMethod');

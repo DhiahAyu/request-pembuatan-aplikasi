@@ -24,8 +24,10 @@ return new class extends Migration
             $table->string('ruang_lingkup')->nullable();
             $table->string('uploaddata')->nullable();
             $table->enum('status',['Rejected','Approved', 'Pending', 'Not Yet Submitted' ])->default('Not Yet Submitted');
+            $table->string('pesan')->nullable();
             $table->timestamps();
             $table->string('action');
+            $table->string('formsfill')->nullable();
         });
     }
 

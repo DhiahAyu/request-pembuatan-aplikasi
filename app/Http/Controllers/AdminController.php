@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Formrequest;
 use App\Models\Formcra;
+use App\Models\Formsrs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,9 +23,10 @@ class AdminController extends Controller
         return view ('homeuser',compact('data'));
     }
     function project(){
-        $data = Formrequest::all();
-        return view ('homeproject',compact('data'));
-    }
+        $data = Formsrs::with('rfc')->get();
+        // dd($data);
+        return view('homeproject', compact('data'));
+    }    
     function digiport(){
         $data = Formcra::all();
         return view ('homedigiport',compact('data'));

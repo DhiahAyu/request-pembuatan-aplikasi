@@ -46,7 +46,7 @@
                                                 <strong>Originator Name</strong>
                                             </td>
                                             <td width="76%">
-                                                <textarea class="form-control" name="originator_name" class="form-control m-input" id="floatingOriginatorname" placeholder="Originator Name" value="{{old('originator_name')}}" style="height: 65px"></textarea>
+                                                <textarea class="form-control" name="originator_name" class="form-control m-input" id="floatingOriginatorname" placeholder="Originator Name" value="{{old('originator_name')}}" style="height: 65px" ></textarea>
                                             </td>	
                                             @error('originator_name')
                                             <div class="alert alert-danger">
@@ -59,7 +59,7 @@
                                                 <strong>Data Owner</strong>
                                             </td>
                                             <td width="76%">	
-                                                <textarea class="form-control" name="data_owner" class="form-control m-input" id="floatingDataowner" placeholder="Data Owner" value="{{old('data_owner')}}" style="height: 65px"></textarea>
+                                                <textarea class="form-control" name="data_owner" class="form-control m-input" id="floatingDataowner" placeholder="Data Owner" value="{{old('data_owner')}}" style="height: 65px" disabled>{{$formRequest->sponsor_proyek}}</textarea>
                                             </td>	
                                             @error('data_owner')
                                             <div class="alert alert-danger">
@@ -85,7 +85,7 @@
                                                 <strong>Project Name</strong>
                                             </td>
                                             <td width="76%" class="mb-3">
-                                                <textarea class="form-control" name="project_name" class="form-control m-input" id="floatingProjectname" placeholder="Project Name" value="{{old('project_name')}}" style="height: 65px"></textarea>
+                                                <textarea class="form-control" name="project_name" class="form-control m-input" id="floatingProjectname" placeholder="Project Name" value="{{old('project_name')}}" style="height: 65px" disabled>{{$formRequest->nama_aplikasi}}</textarea>
                                             </td>	
                                             @error('project_name')
                                             <div class="alert alert-danger">

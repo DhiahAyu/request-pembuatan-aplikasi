@@ -24,23 +24,27 @@
                                         $no = 1;
                                     @endphp
                                     @foreach ($data as $row)
-                                    @if ($row->kirimke === 'Planning')
+                                    {{-- @if ($row->kirimke === 'Planning||Digiport') --}}
                                     <tr style="text-align: center; align-items: center;">
                                         <th scope="row">{{$no++}}</th>
                                         <td>{{ date('d/m/Y', strtotime($row->created_at)) }}</td>
-                                        <td>{{$row->project_name}}</td>
-                                        <td>{{$row->data_owner}}</td>
+                                        <td>{{$row->rfc->nama_aplikasi}}</td>
+                                        <td>{{$row->rfc->sponsor_proyek}}</td>
                                         <td>
                                             {{-- {{$row->data_owner}} --}}
                                             blm ada atributnya di tabel FormRequest
                                         </td>
                                         <td>
-                                            <a href="/viewcra/{{$row->id}}" class="btn btn-info"><i class="fas fa-solid fa-eye" style="color: #ffffff;"></i></a>
-                                            {{-- BTN EXPORT PDF --}}
-                                            {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
+                                            <div style="display: flex; gap: 5px;">
+                                                <a href="/viewcra/{{$row->id}}" class="btn btn-info"><i class="fas fa-solid fa-eye" style="color: #ffffff;"></i></a>
+                                                <a href="" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                                {{-- <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a> --}}
+                                                {{-- BTN EXPORT PDF --}}
+                                                {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
+                                            </div>
                                         </td>
                                     </tr>
-                                    @endif
+                                    {{-- @endif --}}
                                     @endforeach
                                 </tbody>
                             </table>
