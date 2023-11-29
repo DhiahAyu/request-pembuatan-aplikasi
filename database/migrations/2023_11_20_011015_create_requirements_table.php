@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('modul_id'); // Relasi ke tabel moduls
             $table->text('requirement');
             $table->string('mockup')->nullable();
+            $table->integer('progress')->nullable();
             $table->timestamps();
             
             // Menambahkan foreign key ke modul_id

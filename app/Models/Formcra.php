@@ -20,7 +20,7 @@ class Formcra extends Model
 
     public function rfc()
     {
-        return $this->belongsTo(Formrequest::class);
+        return $this->belongsTo(Formrequest::class, 'request_id');
     }
 
     public function changeMajors()

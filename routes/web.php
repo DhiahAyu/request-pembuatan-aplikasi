@@ -8,6 +8,7 @@ use App\Http\Controllers\FormcraController;
 use App\Http\Controllers\FormsrsController;
 use App\Http\Controllers\ModulController;
 use App\Http\Controllers\SrsController;
+use App\Http\Controllers\AddprogressController;
 use App\Models\Formsrs;
 
 /*
@@ -144,3 +145,8 @@ Route::get('gambarrequirement/{filename}', function ($filename) {
 
     return response($file)->header('Content-Type', $type);
 })->name('gambarrequirement');
+
+
+// ==========Progress==========
+Route::get('/editprogress/{id}',[AddprogressController::class, 'editprogress'])->name('editprogress');
+Route::post('/update-progress/{id}', [AddprogressController::class, 'updateProgress'])->name('update.progress');

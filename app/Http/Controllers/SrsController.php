@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Storage;
 class SrsController extends Controller
 {
     public function tambahsrs($id){
-        $formRequest = Formrequest::find($id);
+        $formRequest = Formrequest::with('cra')->find($id);
+        // dd($formRequest->toArray(), $formRequest->formcra);
         return view ('tambahsrs', compact('formRequest'));
     }
 

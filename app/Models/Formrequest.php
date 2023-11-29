@@ -21,11 +21,11 @@ class Formrequest extends Model
 
     public function cra()
     {
-        return $this->hasOne(Formcra::class);
+        return $this->hasOne(Formcra::class,'request_id', 'id');
     }
 
     public function srs()
     {
-        return $this->hasOne(Formsrs::class);
+        return $this->hasOne(Formsrs::class,'request_id', 'id');
     }
 }

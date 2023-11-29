@@ -32,12 +32,14 @@
                                         <td>{{$row->rfc->sponsor_proyek}}</td>
                                         <td>
                                             {{-- {{$row->data_owner}} --}}
-                                            blm ada atributnya di tabel FormRequest
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+                                              </div>
                                         </td>
                                         <td>
                                             <div style="display: flex; gap: 5px;">
                                                 <a href="/viewcra/{{$row->id}}" class="btn btn-info"><i class="fas fa-solid fa-eye" style="color: #ffffff;"></i></a>
-                                                <a href="" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                                <a href="/editprogress/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
                                                 {{-- <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a> --}}
                                                 {{-- BTN EXPORT PDF --}}
                                                 {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
