@@ -32,6 +32,7 @@
                                     <th scope="col">Data Owner</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
+                                    <th scope="col">flowchart</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +77,13 @@
                                         {{-- BTN EXPORT PDF --}}
                                         {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
                                     </td>
+                                    <td>
+                                        @if ($row->flowchart)
+                                        <img src="{{ asset($row->flowchart) }}" alt="Flowchart">
+                                        @else
+                                        No Mockup
+                                    @endif 
+                                    </td>  
                                 </tr>
                                 @endforeach
                             </tbody>
