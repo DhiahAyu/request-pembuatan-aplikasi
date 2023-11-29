@@ -8,6 +8,7 @@ use App\Http\Controllers\FormcraController;
 use App\Http\Controllers\FormsrsController;
 use App\Http\Controllers\ModulController;
 use App\Http\Controllers\SrsController;
+use App\Http\Controllers\AddprogressController;
 use App\Models\Formsrs;
 
 /*
@@ -91,9 +92,14 @@ Route::get('/deletedata/{id}',[FormrequestController::class, 'deletedata'])->nam
 //DOWNLOAD PDF
 Route::get('/download_pdf/{id}',[FormrequestController::class, 'downloadPdf'])->name('downloadPdf');
 
+// Route::post('/send-rejected-message',[FormrequestController::class, 'sendRejectedMessage'])->name('rejectedMessage');
+Route::post('/pesanreject/{id}', [FormrequestController::class, 'pesanreject'])->name('pesanreject');
+
+
+
 // APPROVE & REJECT
 Route::get('/formrequest/approve/{id}', [FormrequestController::class, 'approve'])->name('formrequestapprove');
-Route::get('/formrequest/reject/{id}', [FormrequestController::class, 'reject'])->name('formrequestreject');
+Route::post('/formrequest/reject/{id}', [FormrequestController::class, 'reject'])->name('formrequestreject');
 
 // Route::get('/requests',[FormcraController::class, 'index'])->name('requests');
 Route::get('/indexMethod', [FormcraController::class, 'indexMethod'])->name('indexMethod');
@@ -118,7 +124,6 @@ Route::get('/tambahsrs/{id}',[SrsController::class, 'tambahsrs'])->name('tambahs
 // Route::post('/insertdatasrs',[FormsrsController::class, 'insertdatasrs'])->name('insertdatasrs');
 
 //-----------SRS--------//
-Route::get('/srs/create', [SrsController::class, 'create'])->name('srs.create');
 Route::post('/modul/store', [SrsController::class, 'store'])->name('modul.store');
 
 // Route::get('/getdata-modul', [SrsController::class, 'getModul']);
@@ -140,3 +145,8 @@ Route::get('gambarrequirement/{filename}', function ($filename) {
 
     return response($file)->header('Content-Type', $type);
 })->name('gambarrequirement');
+
+
+// ==========Progress==========
+Route::get('/editprogress/{id}',[AddprogressController::class, 'editprogress'])->name('editprogress');
+Route::post('/update-progress/{id}', [AddprogressController::class, 'updateProgress'])->name('update.progress');

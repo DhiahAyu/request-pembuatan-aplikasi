@@ -23,9 +23,13 @@ class FormrequestController extends Controller
 
     //HALAMAN HOME ADMIN
     public function homeadmin() {
-        $data = Formrequest::whereIn('status', ['Pending', 'Approved', 'Rejected'])->get();
-        return view('homeadmin', compact('data'));
+        $data = Formrequest::whereIn('status', ['Pending', 'Approved', 'Rejected'])
+            ->with('formcra') // Memuat relasi Formcra
+            ->get();
+        $cra = Formcra::all();
+        return view('homeadmin', compact('data', 'cra'));
     }
+
 
     //HALAMAN FORM REQUEST
     public function tambahrequest(){
@@ -61,6 +65,7 @@ class FormrequestController extends Controller
     
             $data = Formrequest::create($request->all());
             $data->status = 'Pending'; // Set status menjadi "Pending"
+            $data->formsfill='1/3';
             $data->save();
           
             // if ($request->hasFile('flowchart') && $request->hasFile('uploaddata')) {
@@ -195,9 +200,13 @@ class FormrequestController extends Controller
         }
 
     // REJECT
-        public function reject($id){
+        public function reject(Request $request, $id){
             $data = Formrequest::find($id);
             if($data) {
+                $request->validate([
+                    'rejected_message' => 'required|string',
+                ]);
+                $data->pesan = $request->rejected_message;
                 $data->status = 'Rejected'; // Gantikan dengan nama status yang sesuai
                 $data->save();
                 return redirect()->route('admin')->with('success', 'Data Berhasil Di Reject');
@@ -211,5 +220,4 @@ class FormrequestController extends Controller
         
         return redirect()-> route('user')->with('success','Data Berhasil Di Tambahkan');
     }
-
 }

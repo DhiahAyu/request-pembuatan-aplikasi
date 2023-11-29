@@ -54,16 +54,42 @@
                                         <td><h5><span class="badge badge-pill badge-danger">{{$row->status}}</span></h5></td>
                                     @endif
                                     <td>
-                                        @if ($row->status=='Approved')
+                                        @if ($row->status=='Approved'&& $row->formsfill == '1/3')
                                         <a href="/tambahdatacra/{{ $row->id }}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA</i></a>
+                                        @endif
+                                        @if ($row->status=='Approved'&& $row->formsfill == '2/3'||$row->formsfill == '3/3')
+                                        <h6>CRA telah dikirim ke unit lain</h6>
+                                        {{-- <a href="" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA Telah di buat</i></a> --}}
                                         @endif
                                         @if ($row->status=='Pending')
                                         <a href="{{ route('formrequestapprove', $row->id) }}" class="btn btn-success">Approve</a>
-                                        <a href="{{ route('formrequestreject', $row->id) }}" class="btn btn-danger">Reject</a>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Rejected</button>
+                                        {{-- <a href="{{ route('formrequestreject', $row->id) }}" class="btn btn-danger">Reject</a> --}}
                                         @endif
                                         @if ($row->status=='Rejected') 
-                                            <a href="#" class="btn btn-info"><span class="material-icons">note_add</span></a>
+                                            {{-- <a href="#" class="btn btn-info"><span class="material-icons">note_add</span></a> --}}
+                                            {{-- <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-icons">note_add</span></button> --}}
+                                            <button type="button" class="btn btn-info view-modal-btn" data-bs-toggle="modal" data-bs-target="#viewModal{{ $row->id }}" data-rejected-message="{{ $row->pesan }}">
+                                                <i class="fas fa-solid fa-eye" style="color: #ffffff;"></i>
+                                            </button>                                            
                                         @endif
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="viewModal{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Rejected Reason</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <p>{{$row->pesan}}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
                                         {{-- BTN EXPORT PDF --}}
                                         {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
                                     </td>
@@ -74,6 +100,32 @@
                         </table>
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal --}}
+    <!-- Modal Submit Pesan Reject -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Rejected Message</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('formrequestreject', $row->id) }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="rejectedMessage">Rejected Message:</label>
+                            <textarea class="form-control" name="rejected_message" id="rejectedMessage" placeholder="Masukkan Alasan kenapa Request Ditolak" style="width: 100%; height: 100%;"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+                </div>                
             </div>
         </div>
     </div>

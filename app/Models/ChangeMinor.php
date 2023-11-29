@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChangeMinor extends Model
 {
+    protected $table = 'minors';
     use HasFactory;
+    protected $fillable = [
+        'justification', 'cra_id'
+    ];
 
     public function cra()
     {
-        return $this->belongsTo(Formcra::class);
+        return $this->belongsTo(Formcra::class, 'cra_id');
     }
 }

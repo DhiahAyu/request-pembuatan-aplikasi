@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('project_name')->nullable();
             $table->text('impact_areas')->nullable();
             $table->text('priority')->nullable();
-            $table->string('justifcation_major')->nullable();
-            $table->string('justifcation_minor')->nullable();
             $table->string('general_context')->nullable();
             $table->string('pontential_cost')->nullable();
             $table->string('alternative_solutions')->nullable();
@@ -32,6 +30,15 @@ return new class extends Migration
             $table->timestamps();
             $table->string('actioncra');
             $table->string('kirimke')->nullable();
+            $table->string('akses_user')->nullable();
+            $table->string('topologi_server')->nullable();
+            $table->string('spesifikasi_server')->nullable();
+            $table->string('software')->nullable();
+            $table->string('tipe_data')->nullable();
+            $table->string('komponen_backup')->nullable();
+            $table->string('frekuensi_backup')->nullable();
+            $table->string('lama_backup')->nullable();
+            $table->string('security')->nullable();
             $table->foreign('request_id')->references('id')->on('formrequests')->onDelete('cascade');
         });
     }

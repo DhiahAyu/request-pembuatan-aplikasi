@@ -11,10 +11,16 @@ class Formcra extends Model
 
     protected $guarded =[];
     protected $table = 'formcras';
+    protected $fillable = [
+        'request_id', 'cr_analyst', 'originator_name', 'data_owner', 'date', 'project_name', 'impact_areas',
+        'priority', 'general_context', 'pontential_cost',
+        'alternative_solutions', 'support', 'akses_user', 'topologi_server', 'spesifikasi_server',
+        'software', 'tipe_data', 'komponen_backup', 'frekuensi_backup', 'lama_backup', 'security', 'actioncra',
+    ];
 
     public function rfc()
     {
-        return $this->belongsTo(Formrequest::class);
+        return $this->belongsTo(Formrequest::class, 'request_id');
     }
 
     public function changeMajors()

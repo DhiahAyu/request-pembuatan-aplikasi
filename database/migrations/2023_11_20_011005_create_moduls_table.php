@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('srs_id'); // Relasi ke tabel srs
             $table->string('nama');
+            $table->integer('tot_modul')->nullable();
             $table->timestamps();
             
             // Menambahkan foreign key ke srs_id

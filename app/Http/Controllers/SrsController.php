@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Storage;
 class SrsController extends Controller
 {
     public function tambahsrs($id){
-        $formRequest = Formrequest::find($id);
+        $formRequest = Formrequest::with('cra')->find($id);
+        // dd($formRequest->toArray(), $formRequest->formcra);
         return view ('tambahsrs', compact('formRequest'));
     }
 
@@ -81,6 +82,9 @@ public function store(Request $request)
                 $requirementModel->save();
             }
         }
+        $formrequest = Formrequest::find($request->input('request_id'));
+        $formrequest->formsfill = '3/3';
+        $formrequest->save();
         // Redirect atau berikan respons sesuai kebutuhan
         return redirect()->route('user')->with('success', 'Data SRS berhasil disimpan.');
     } catch (\Exception $e) {

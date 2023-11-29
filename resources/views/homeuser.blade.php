@@ -63,17 +63,41 @@
                                             <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
                                             <a href="#" class="btn btn-danger delete  data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
                                         @endif
-                                        @if ($row->status=='Approved')
+                                        @if ($row->status=='Approved'&& $row->formsfill != '3/3')
                                             <a href="/tambahsrs/{{$row->id}}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> SRS</i></a>
+                                        @endif
+                                        @if ($row->status=='Approved'&& $row->formsfill == '3/3')
+                                        <h6>SRS Telah Di kirim</h6>
+                                        {{-- <a href="" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA Telah di buat</i></a> --}}
                                         @endif
                                         @if ($row->status=='Pending')
                                             <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
                                             <a href="#" class="btn btn-danger delete  data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
                                         @endif
                                         @if ($row->status=='Rejected')
-                                            <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                            {{-- <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a> --}}
                                             <a href="#" class="btn btn-danger delete " data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
+                                            <button type="button" class="btn btn-info view-modal-btn" data-bs-toggle="modal" data-bs-target="#viewModal{{ $row->id }}" data-rejected-message="{{ $row->pesan }}">
+                                                <i class="fas fa-solid fa-eye" style="color: #ffffff;"></i>
+                                            </button> 
                                         @endif
+                                         <!-- Modal -->
+                                         <div class="modal fade" id="viewModal{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Rejected Reason</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <p>{{$row->pesan}}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
                                         {{-- BTN EXPORT PDF --}}
                                         {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
                                     </td>

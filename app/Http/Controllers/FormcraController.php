@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Formcra;
 use App\Models\Formrequest;
+use App\Models\ChangeMajor;
+use App\Models\ChangeMinor;
 use Illuminate\Http\Request;
 
 class FormcraController extends Controller
@@ -41,10 +43,38 @@ class FormcraController extends Controller
     
         // Insert data
         try {
-            Formcra::create($data);
+            $formcra = Formcra::create($data);
+            $formrequest = Formrequest::find($request->input('request_id'));
+            $formrequest->formsfill = '2/3';
+            $formrequest->save();
+    
+            // Insert data Justification Major
+            foreach ($request->input('justification_major') as $justificationMajor) {
+                $major = new ChangeMajor([
+                    'justification' => $justificationMajor,
+                    'cra_id' => $formcra->id, // Gunakan $formcra, bukan $cra
+                ]);
+                $major->save();
+            }
+    
+            // Insert data Justification Minor
+            foreach ($request->input('justification_minor') as $justificationMinor) {
+                $minor = new ChangeMinor([
+                    'justification' => $justificationMinor,
+                    'cra_id' => $formcra->id, // Gunakan $formcra, bukan $cra
+                ]);
+                $minor->save();
+            }
+            
+
+            // Insert data Justification Minor
+            // foreach ($request->input('justification_minor') as $justificationMinor) {
+            //     $formcra->changeMinors()->create(['justification_minor' => $justificationMinor]);
+            // }
         } catch (\Exception $e) {
             // Tampilkan error message
-            dd($e->getMessage());
+            // dd($e->getMessage());
+            dd($formcra);
         }
         // Redirect ke halaman index dengan pesan success
         return redirect()->route('indexMethod')->with('success', 'Data berhasil ditambahkan');
@@ -58,6 +88,4 @@ class FormcraController extends Controller
     
         return view('form_cra_readonly', compact('data', 'selectedImpactAreas', 'selectedPriority'));
     }
-    
-    
 }

@@ -14,6 +14,7 @@ return new class extends Migration
     Schema::create('formsrs', function (Blueprint $table) {
         $table->id();
             $table->unsignedBigInteger('request_id'); // Relasi ke tabel rfcs
+            $table->integer('tot_progress')->nullable();
             $table->timestamps();
             
             // Menambahkan foreign key ke rfc_id
