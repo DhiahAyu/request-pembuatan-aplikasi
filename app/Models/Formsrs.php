@@ -23,7 +23,6 @@ class Formsrs extends Model
     {
         return $this->hasMany(Modul::class, 'srs_id');
     }
-
     
 }
 

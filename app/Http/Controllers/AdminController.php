@@ -23,7 +23,7 @@ class AdminController extends Controller
         return view ('homeuser',compact('data'));
     }
     function project(){
-        $data = Formsrs::with('rfc')->get();
+        $data = Formsrs::all();
         // dd($data);
         return view('homeproject', compact('data'));
     }    

@@ -67,24 +67,58 @@ class FormrequestController extends Controller
             $data->status = 'Pending'; // Set status menjadi "Pending"
             $data->formsfill='1/3';
             $data->save();
-            if($request->hasFile('flowchart, uploaddata')){
-                $request->file('flowchart, uploaddata')->move('gambarflowchart/', $request->file('flowchart, uploaddata')->getClientOriginalName());
-                $data->flowchart = $request->file('flowchart')->getClientOriginalName();
-                $data->uploaddata = $request->file('uploaddata')->getClientOriginalName();
+          
+            // if ($request->hasFile('flowchart') && $request->hasFile('uploaddata')) {
+            //     $flowchartFile = $request->file('flowchart');
+            //     $uploadDataFile = $request->file('uploaddata');
+            
+            //     $flowchartFileName = $flowchartFile->getClientOriginalName();
+            //     $uploadDataFileName = $uploadDataFile->getClientOriginalName();
+            
+            //     $flowchartFile->storeAs('public/gambarflowchart/', $flowchartFileName);
+            //     $uploadDataFile->storeAs('public/gambarflowchart/', $uploadDataFileName);
+            //     $data->flowchart = $flowchartFileName;
+            //     $data->uploaddata = $uploadDataFileName;
+            //     $data->save();
+            // }
+
+            if ($request->hasFile('flowchart') && $request->hasFile('uploaddata')) {
+                $flowchartFile = $request->file('flowchart');
+                $uploadDataFile = $request->file('uploaddata');
+            
+                $flowchartFileName = $flowchartFile->getClientOriginalName();
+                $uploadDataFileName = $uploadDataFile->getClientOriginalName();
+            
+                $flowchartFile->storeAs('public/gambarflowchart/', $flowchartFileName);
+                $uploadDataFile->storeAs('public/gambarflowchart/', $uploadDataFileName);
+            
+                $data->flowchart = 'storage/gambarflowchart/' . $flowchartFileName;
+                $data->uploaddata = 'storage/gambarflowchart/' . $uploadDataFileName;
+            
                 $data->save();
             }
+            
+            
 
         } elseif ($request->input('action') === 'saveDraft') {
             $data = Formrequest::create($request->all());
-            if($request->hasFile('flowchart')){
-                $request->file('flowchart')->move('gambarflowchart/', $request->file('flowchart')->getClientOriginalName());
-                $data->flowchart = $request->file('flowchart')->getClientOriginalName();
-                $data->save();
-            }else if($request->hasFile('uploaddata')){
-                $request->file('uploaddata')->move('gambarflowchart/', $request->file('uploaddata')->getClientOriginalName());
-                $data->uploaddata = $request->file('uploaddata')->getClientOriginalName();
-                $data->save();
+
+            if ($request->hasFile('flowchart')) {
+                $flowchartFile = $request->file('flowchart');
+                $flowchartFileName = $flowchartFile->getClientOriginalName();
+                $flowchartFile->storeAs('public/gambarflowchart/', $flowchartFileName);
+                $data->flowchart = 'storage/gambarflowchart/' . $flowchartFileName;
             }
+            
+            if ($request->hasFile('uploaddata')) {
+                $uploadDataFile = $request->file('uploaddata');
+                $uploadDataFileName = $uploadDataFile->getClientOriginalName();
+                $uploadDataFile->storeAs('public/gambarflowchart/', $uploadDataFileName);
+                $data->uploaddata = 'storage/gambarflowchart/' . $uploadDataFileName;
+            }
+            
+            $data->save();
+            
         }
         //dd($request->all());
         return redirect()-> route('user')->with('success','Data Berhasil Di Tambahkan');

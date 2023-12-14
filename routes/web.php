@@ -8,6 +8,7 @@ use App\Http\Controllers\FormcraController;
 use App\Http\Controllers\FormsrsController;
 use App\Http\Controllers\ModulController;
 use App\Http\Controllers\SrsController;
+use App\Http\Controllers\UatController;
 use App\Http\Controllers\AddprogressController;
 use App\Models\Formsrs;
 
@@ -150,3 +151,11 @@ Route::get('gambarrequirement/{filename}', function ($filename) {
 // ==========Progress==========
 Route::get('/editprogress/{id}',[AddprogressController::class, 'editprogress'])->name('editprogress');
 Route::post('/update-progress/{id}', [AddprogressController::class, 'updateProgress'])->name('update.progress');
+
+//=========FormUAT========
+Route::get('/UAT', function () {
+    return view('form_uat');
+});
+
+Route::get('/UAT/{id}',[UatController::class, 'viewuta'])->name('viewuta');
+Route::post('/insertdatauat', [UatController::class, 'insertData']);

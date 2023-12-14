@@ -28,4 +28,9 @@ class Formrequest extends Model
     {
         return $this->hasOne(Formsrs::class,'request_id', 'id');
     }
+
+    public function formuat()
+    {
+        return $this->hasOne(FormUAT::class,'request_id', 'id');
+    }
 }

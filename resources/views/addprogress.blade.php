@@ -26,54 +26,59 @@
             <div class="col-10">
                 <div class="card p-3">
                     <div class="card-body">
-                        <h5 style="color: white;">Nama Aplikasi : {{$data->rfc->nama_aplikasi}}</h5>
+                        <h5 style="color: white;">Nama Aplikasi : {{$data->nama_aplikasi}}</h5>
                         <h5 style="color: white;">PIC : </h5>
-                        <table class="table table-bordered" style="margin-top: 1em;">
-                            <thead>
-                                <tr style="text-align: center">
-                                    <th scope="col" style="color: white;">No</th>
-                                    <th scope="col" style="color: white;">Deskripsi Menu</th>
-                                    <th scope="col" style="color: white;">Kebutuhan Fungsional</th>
-                                    <th scope="col" style="color: white;">Mockup</th>
-                                    <th scope="col" style="color: white;">Progress</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($data->moduls as $modul)
-                                    @foreach ($modul->requirements as $requirement)
-                                        <tr style="text-align: center; align-items: center;vertical-align: middle;">
-                                            @if ($loop->first)
-                                                <th rowspan="{{ count($modul->requirements) }}" style="color: white;">{{$no++}}</th>
-                                                <td rowspan="{{ count($modul->requirements) }}" style="color: white;">{{ $modul->nama }}</td>
-                                            @endif
-                                            <td style="color: white;">{{ $requirement->requirement }}</td>
-                                            <td>
-                                                @if ($requirement->mockup)
-                                                <img src="{{ asset($requirement->mockup) }}" alt="Mockup Image" width="100">
-                                                @else
-                                                    No Mockup
+                        <form action="{{ route('update.progress', ['id' => $data->id]) }}" method="post">
+                            @csrf
+                            <table class="table table-bordered" style="margin-top: 1em;">
+                                <thead>
+                                    <tr style="text-align: center">
+                                        <th scope="col" style="color: white;">No</th>
+                                        <th scope="col" style="color: white;">Deskripsi Menu</th>
+                                        <th scope="col" style="color: white;">Kebutuhan Fungsional</th>
+                                        <th scope="col" style="color: white;">Mockup</th>
+                                        <th scope="col" style="color: white;">Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($data->moduls as $modul)
+                                        @foreach ($modul->requirements as $requirement)
+                                            <tr style="text-align: center; align-items: center;vertical-align: middle;">
+                                                @if ($loop->first)
+                                                    <th rowspan="{{ count($modul->requirements) }}" style="color: white;">{{$no++}}</th>
+                                                    <td rowspan="{{ count($modul->requirements) }}" style="color: white;">{{ $modul->nama }}</td>
                                                 @endif
-                                            </td>
-                                            <td style="color: white; width: 13%"">
-                                                <!-- Add your form here -->
-                                                <form action="{{ route('update.progress', ['id' => $requirement->id]) }}" method="post">
-                                                    @csrf
+                                                <td style="color: white;">{{ $requirement->requirement }}</td>
+                                                <td>
+                                                    @if ($requirement->mockup)
+                                                        <img src="{{ asset($requirement->mockup) }}" alt="Mockup Image" width="100">
+                                                    @else
+                                                        No Mockup
+                                                    @endif
+                                                </td>
+                                                <td style="color: white; width: 13%">
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control" name="progress" pattern="\d*" oninput="this.value = this.value.replace(/\D/g, '')" required>
+                                                        <input type="number" class="form-control" name="progress[{{ $requirement->id }}]" pattern="\d*" oninput="this.value = this.value.replace(/\D/g, '')" required>
                                                     </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <div style="width: 100%; padding:10px;">
-                            <button type="submit" class="btn btn-success" style="width: 100%;">Submit</button>
-                        </div>
-                    </form>
+                                </tbody>
+                                <tfoot style="color: white;">
+                                    <tr style="text-align: center; align-items: center;vertical-align: middle;">
+                                        <td colspan="4">Rata Rata</td>
+                                        <td>Hasil Rata Rata</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div style="width: 100%; padding:10px;">
+                                <button type="submit" class="btn btn-success" style="width: 100%;">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
