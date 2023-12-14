@@ -54,6 +54,10 @@
                                         <td><h5><span class="badge badge-pill badge-danger">{{$row->status}}</span></h5></td>
                                     @endif
                                     <td>
+                                        @if ($row->status=='Approved'&& $row->formsfill == '4/3')
+                                        <a href="/QC/{{ $row->id }}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                        {{-- <a href="" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA Telah di buat</i></a> --}}
+                                        @endif
                                         @if ($row->status=='Approved'&& $row->formsfill == '1/3')
                                         <a href="/tambahdatacra/{{ $row->id }}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA</i></a>
                                         @endif

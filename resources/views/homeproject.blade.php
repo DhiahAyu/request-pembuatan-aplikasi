@@ -32,9 +32,15 @@
                                         <td>{{$row->rfc->sponsor_proyek}}</td>
                                         <td>
                                             {{-- {{$row->data_owner}} --}}
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
-                                              </div>
+                                            @if ($row->tot_progress === null)
+                                                <div>
+                                                    <label>Belum Ada Progress</label>
+                                                </div>
+                                            @else
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$row->tot_progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$row->tot_progress}}%">{{$row->tot_progress}}%</div>
+                                                </div>
+                                            @endif
                                         </td>
                                         <td>
                                             <div style="display: flex; gap: 5px;">

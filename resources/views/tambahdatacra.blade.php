@@ -340,7 +340,10 @@
                                     </div>
                                     <div class="col-xl-6 mb-4">
                                         <button type="submit" class="btn btn-success" name="actioncra" value="submit" style="width: 100%">Submit</button>
-                                    </div>                                  
+                                    </div>     
+                                    <div class="modal-dialog modal-fullscreen-sm-down">
+                                       
+                                      </div>                             
                                 </div>                                  
                             </tbody>
                         </div>
