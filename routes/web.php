@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormrequestController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth;
 use App\Http\Controllers\FormcraController;
 use App\Http\Controllers\FormsrsController;
 use App\Http\Controllers\ModulController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\SrsController;
 use App\Http\Controllers\UatController;
 use App\Http\Controllers\AddprogressController;
 use App\Models\Formsrs;
+use App\Http\Controllers\QualitycontrolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +122,8 @@ Route::post('/saveasdraftcra', [FormcraController::class, 'saveasdraftcra'])->na
 
 Route::resource('srsadd', Formsrs::class);
 
+// Route::resource('srsadd', Formsrs::class);
+
 // Route::get('/indexsrs', [FormsrsController::class, 'indexsrs'])->name('indexsrs');
 Route::get('/tambahsrs/{id}',[SrsController::class, 'tambahsrs'])->name('tambahsrs');
 // Route::post('/insertdatasrs',[FormsrsController::class, 'insertdatasrs'])->name('insertdatasrs');
@@ -151,6 +155,16 @@ Route::get('gambarrequirement/{filename}', function ($filename) {
 // ==========Progress==========
 Route::get('/editprogress/{id}',[AddprogressController::class, 'editprogress'])->name('editprogress');
 Route::post('/update-progress/{id}', [AddprogressController::class, 'updateProgress'])->name('update.progress');
+
+// Route::get('/QC/{id}', function (){
+//     return view('tambahqc');
+// });
+
+Route::get('/QC/{id}', [QualitycontrolController::class, 'indexQC'])->name('indeQC');
+
+Route::post('/insertqc', [QualitycontrolController::class, 'insertqc'])->name('insertqc');
+
+Route::get('/tambahdataqc',[QualitycontrolController::class, 'tambahdataqc'])->name('tambahdataqc');
 
 //=========FormUAT========
 Route::get('/UAT', function () {

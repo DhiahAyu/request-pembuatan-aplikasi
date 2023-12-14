@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Requirement;
+use App\Models\Requirement;
 use App\Models\Formsrs;
+use App\Models\Modul;
 use App\Models\Modul;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,10 @@ class AddprogressController extends Controller
 {
     public function editprogress($id)
     {
+    public function editprogress($id)
+    {
         $data = Formsrs::with('rfc', 'moduls.requirements')->find($id);
+        return view('addprogress', compact('data'));
         return view('addprogress', compact('data'));
     }
 
@@ -21,9 +26,16 @@ class AddprogressController extends Controller
     $request->validate([
         'progress.*' => 'required|integer|min:0|max:100', // Adjust validation rules as needed
     ]);
+{
+    // Validate the form data
+    $request->validate([
+        'progress.*' => 'required|integer|min:0|max:100', // Adjust validation rules as needed
+    ]);
 
     foreach ($request->input('progress') as $requirementId => $progress) {
+    foreach ($request->input('progress') as $requirementId => $progress) {
         // Find the requirement by ID
+        $requirement = Requirement::find($requirementId);
         $requirement = Requirement::find($requirementId);
 
         if ($requirement) {

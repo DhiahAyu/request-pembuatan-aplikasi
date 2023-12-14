@@ -2,6 +2,7 @@
 
 @section('content')
 
+<<<<<<< HEAD
 <div class="card-header border-0">
     <div class="justify-content-between" style="text-justify:center;">
         <h1 class="text-center"><strong>APPLICATION REQUEST</strong></h1>
@@ -104,6 +105,122 @@
         </table>
     </div>
 </div>
+=======
+<div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <h1 class="text-center" style="margin-top: 1em">APPLICATION REQUEST</h1>
+        <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="card col-10 mx-auto">
+                    <div class="card-header ui-sortable-handle">
+                        <a href="/tambahrequest" class="btn btn-success mb-2" style="margin-top: 5px"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> RFC</i></a>   
+                        {{-- <div class="card-tools">
+                            <ul class="nav nav-pills ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                </li>
+                            </ul>
+                        </div> --}}
+                    </div>
+                    <div class="card-body">
+                        <table class="table"  style="width: 100%">
+                            <thead>
+                                <tr style="text-align: center">
+                                    <th scope="col">No</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Application Name</th>
+                                    <th scope="col">Data Owner</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                    <th scope="col">flowchart</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($data as $row)
+                                <tr style="text-align: center; align-items: center;">
+                                    <th scope="row">{{$no++}}</th>
+                                    <td>{{ date('d/m/Y', strtotime($row->created_at)) }}</td>
+                                    <td>{{$row->nama_aplikasi}}</td>
+                                    <td>{{$row->sponsor_proyek}}</td>
+                                    @if ($row->status=='Not Yet Submitted')
+                                        <td><h5><span class="badge badge-pill badge-info" style="">Draft</span></h5></td>
+                                    @endif
+                                    @if ($row->status=='Pending')
+                                        <td><h5><span class="badge badge-pill badge-warning" style="">{{$row->status}}</span></h5></td>
+                                    @endif
+                                    @if ($row->status=='Approved')
+                                        <td><h5><span class="badge badge-pill badge-success">{{$row->status}}</span></h5></td>
+                                    @endif
+                                    @if ($row->status=='Rejected')
+                                        <td><h5><span class="badge badge-pill badge-danger">{{$row->status}}</span></h5></td>
+                                    @endif
+                                    <td>
+                                        <h1></h1>
+                                        @if ($row->status=='Not Yet Submitted')
+                                            <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                            <a href="#" class="btn btn-danger delete  data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
+                                        @endif
+                                        @if ($row->status=='Approved'&& $row->formsfill != '3/3')
+                                            <a href="/tambahsrs/{{$row->id}}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> SRS</i></a>
+                                        @endif
+                                        @if ($row->status=='Approved'&& $row->formsfill == '3/3')
+                                        <h6>SRS Telah Di kirim</h6>
+                                        {{-- <a href="" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA Telah di buat</i></a> --}}
+                                        @endif
+                                        @if ($row->status=='Pending')
+                                            <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                            <a href="#" class="btn btn-danger delete  data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
+                                        @endif
+                                        @if ($row->status=='Rejected')
+                                            {{-- <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a> --}}
+                                            <a href="#" class="btn btn-danger delete " data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
+                                            <button type="button" class="btn btn-info view-modal-btn" data-bs-toggle="modal" data-bs-target="#viewModal{{ $row->id }}" data-rejected-message="{{ $row->pesan }}">
+                                                <i class="fas fa-solid fa-eye" style="color: #ffffff;"></i>
+                                            </button> 
+                                        @endif
+                                         <!-- Modal -->
+                                         <div class="modal fade" id="viewModal{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Rejected Reason</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <p>{{$row->pesan}}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        {{-- BTN EXPORT PDF --}}
+                                        {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
+                                    </td>
+                                    <td>
+                                        @if ($row->flowchart)
+                                        <img src="{{ asset($row->flowchart) }}" alt="Flowchart">
+                                        @else
+                                        No Mockup
+                                    @endif 
+                                    </td>  
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+<!--content-->
+>>>>>>> 89bf05f14f442730bc28f6d73c3f9c97dcc898c6
 
     <!-- Optional JavaScript; choose one of the two! -->
 

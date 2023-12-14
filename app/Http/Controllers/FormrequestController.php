@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formrequest;
+use App\Models\Formcra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use PDF;
@@ -67,20 +68,6 @@ class FormrequestController extends Controller
             $data->status = 'Pending'; // Set status menjadi "Pending"
             $data->formsfill='1/3';
             $data->save();
-          
-            // if ($request->hasFile('flowchart') && $request->hasFile('uploaddata')) {
-            //     $flowchartFile = $request->file('flowchart');
-            //     $uploadDataFile = $request->file('uploaddata');
-            
-            //     $flowchartFileName = $flowchartFile->getClientOriginalName();
-            //     $uploadDataFileName = $uploadDataFile->getClientOriginalName();
-            
-            //     $flowchartFile->storeAs('public/gambarflowchart/', $flowchartFileName);
-            //     $uploadDataFile->storeAs('public/gambarflowchart/', $uploadDataFileName);
-            //     $data->flowchart = $flowchartFileName;
-            //     $data->uploaddata = $uploadDataFileName;
-            //     $data->save();
-            // }
 
             if ($request->hasFile('flowchart') && $request->hasFile('uploaddata')) {
                 $flowchartFile = $request->file('flowchart');
@@ -123,6 +110,7 @@ class FormrequestController extends Controller
         //dd($request->all());
         return redirect()-> route('user')->with('success','Data Berhasil Di Tambahkan');
     }
+
 
     //HALAMAN UPDATE DATA REQUEST
     public function updaterequest($id){
