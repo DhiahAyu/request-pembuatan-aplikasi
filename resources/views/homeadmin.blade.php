@@ -48,7 +48,11 @@
                                     <a href="/tambahdatacra/{{ $row->id }}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA</i></a>
                                 @endif
                                 @if ($row->status=='Approved'&& $row->formsfill == '2/3'||$row->formsfill == '3/3')
-                                    <h6>CRA telah dikirim ke unit lain</h6>
+                                <a href="/viewcra/{{$row->cra->id}}" class="btn btn-info"><i class="fas fa-solid fa-eye" style="color: #ffffff;"></i></a>
+                                {{-- <a href="/QC/{{ $row->id }}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a> --}}
+                                @endif
+                                @if ($row->status=='Approved'&& $row->formsfill == '3/3')
+                                <a href="/QC/{{ $row->id }}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
                                 @endif
                                 @if ($row->status=='Pending')
                                     <a href="{{ route('formrequestapprove', $row->id) }}" class="btn btn-success">Approve</a>

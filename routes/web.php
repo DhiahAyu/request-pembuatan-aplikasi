@@ -60,8 +60,10 @@ Route::middleware(['auth'])->group(function(){
 });
 
 //----------CRA-----------
-Route::get('/viewcra/{id}',[FormcraController::class, 'viewcra'])->name('viewcra');
+Route::get('/viewid/{id}',[FormcraController::class, 'viewid'])->name('viewid');
 
+Route::get('/viewcra/{id}',[FormcraController::class, 'viewcra'])->name('viewcra');
+// Route::get('/formcra.blade.php/{id}',[FormcraController::class, 'formcra.blade.php'])->name('formcra.blade.php');
 
 //HALAMAN FORM CRA
 Route::get('/tambahrca',[FormrequestController::class, 'tambahchangerequest'])->name('tambahrca');

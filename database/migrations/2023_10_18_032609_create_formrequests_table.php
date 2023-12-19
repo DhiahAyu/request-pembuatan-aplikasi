@@ -18,15 +18,13 @@ return new class extends Migration
             $table->string('latar_belakang')->nullable();
             $table->string('tujuan')->nullable();
             $table->string('wanted_feature')->nullable();
-            $table->string('flowchart')->nullable();
             $table->string('current_condition')->nullable();
             $table->string('kendala')->nullable();
             $table->string('ruang_lingkup')->nullable();
-            $table->string('uploaddata')->nullable();
             $table->enum('status',['Rejected','Approved', 'Pending', 'Not Yet Submitted' ])->default('Not Yet Submitted');
             $table->string('pesan')->nullable();
             $table->timestamps();
-            $table->string('action');
+            $table->string('action')->nullable();
             $table->string('formsfill')->nullable();
         });
     }

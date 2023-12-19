@@ -61,6 +61,9 @@ class FormcraController extends Controller
             dd($e->getMessage());
             // dd($formcra);
         }
+
+         return redirect()->route('admin')->with('success', 'Data Berhasil Ditambahkan');
+        // return redirect()->route('indexMethod')->with('success', 'Data berhasil ditambahkan');
         return redirect()->route('admin')->with('success', 'Data berhasil ditambahkan');
     }
 

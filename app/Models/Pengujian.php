@@ -12,7 +12,7 @@ class Pengujian extends Model
     protected $table = 'pengujians';
 
     protected $fillable = [
-        'idcase', 'pass', 'fail', 'catatan', 'qc_id',
+        'idcase', 'test_result', 'catatan', 'qc_id',
     ];
 
     public function qualitycontrol()

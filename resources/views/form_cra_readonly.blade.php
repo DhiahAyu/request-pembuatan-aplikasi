@@ -11,10 +11,8 @@
     <title>Change Request Analysis</title>
   </head>
   <body>
-    <div class="content-wrapper" style="margin: 1%">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-10">
                 <div class="card p-3" style="background: #343A40;color: rgb(227, 227, 227);">
                     <div class="card-body">   
                 <tbody class="p-3">
@@ -124,7 +122,8 @@
                         <textarea class="form-control" name="support" class="form-control m-input" id="floatingSupport" placeholder="Support from other parties" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
                         </td>
                     </tr>
-                    <table class="table table-bordered" style="margin-top: 1em;">
+                
+                    <table class="table table-bordered" style="background: #343A40;color: rgb(227, 227, 227);" style="margin-top: 1em;">
                         <thead class="bg-blue">
                             <tr style="text-align: center;">
                                 <th colspan="2">
@@ -139,31 +138,37 @@
                                 </td>
                                 <td width="76%">
                                     <div class="p-2">
-                                        <label class="p-1">
-                                            Akses User
-                                        </label>
-                                        <textarea class="form-control" name="akses_user" class="form-control m-input" id="floatingAkses" value="{{old('akses_user')}}" style="height: 65px"></textarea>
-                                        <label class="p-1">
-                                            Topology Server dan Integrasi
-                                        </label>
-                                        <textarea class="form-control" name="topologi_server" class="form-control m-input" id="floatingIntegrasi" value="{{old('topologi_server')}}" style="height: 65px"></textarea>
+                                        <table class="" width="100%" border="1">
+                                            <tr class="p-2 mb-2">
+                                                <td style="text-align: center;" width="24%"><strong class="p-3">Akses User</strong></td>
+                                                <td width="76%">
+                                                <textarea class="form-control" name="akses_user" class="form-control m-input" id="floatingAkses" value="{{old('akses_user')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                                </td>
+                                            </tr>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="text-align: center; vertical-align: middle; width: 24%;">
-                                    <strong>Spesifikasi</strong>
-                                </td>
+                        <tr>
+                        <td style="text-align: center;" width="24%"><strong class="p-3">Spesifikasi</strong></td>
                                 <td width="76%">
                                     <div class="p-2">
-                                        <label class="p-1">
-                                            Spesifikasi Server
-                                        </label>
-                                        <textarea class="form-control" name="spesifikasi_server" class="form-control m-input" id="floatingSpesifikasi" value="{{old('spesifikasi_server')}}" style="height: 65px"></textarea>
-                                        <label class="p-1">
+                                        {{-- <textarea class="form-control" name="spesifikasi_server" class="form-control m-input" id="floatingSpesifikasi" value="{{old('spesifikasi_server')}}" style="height: 65px"></textarea> --}}
+                                        <tr class="p-2 mb-2">
+                                            <td style="text-align: center;" width="24%"><strong class="p-3">Spesifikasi Server</strong></td>
+                                            <td width="76%">
+                                            <textarea class="form-control" name="spesifikasi_server" class="form-control m-input" id="floatingSpesifikasi" value="{{old('spesifikasi_server')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                            </td>
+                                        </tr>
+                                        {{-- <label class="p-1">
                                             Software yang digunakan
                                         </label>
-                                        <textarea class="form-control" name="software" class="form-control m-input" id="floatingSoftware" value="{{old('software')}}" style="height: 65px"></textarea>
+                                        <textarea class="form-control" name="software" class="form-control m-input" id="floatingSoftware" value="{{old('software')}}" style="height: 65px"></textarea> --}}
+                                        <tr class="p-2 mb-2">
+                                            <td style="text-align: center;" width="24%"><strong class="p-3">Software yang digunakan</strong></td>
+                                            <td width="76%">
+                                            <textarea class="form-control" name="software" class="form-control m-input" id="floatingSoftware" value="{{old('software')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                            </td>
+                                        </tr>
                                     </div>
                                 </td>
                             </tr>
@@ -173,22 +178,46 @@
                                 </td>
                                 <td width="76%">
                                     <div class="p-2">
-                                        <label class="p-1">
+                                        {{-- <label class="p-1">
                                             Tipe data yang digunakan
                                         </label>
-                                        <textarea class="form-control" name="tipe_data" class="form-control m-input" id="floatingTipe" value="{{old('tipe_data')}}" style="height: 65px"></textarea>
-                                        <label class="p-1">
+                                        <textarea class="form-control" name="tipe_data" class="form-control m-input" id="floatingTipe" value="{{old('tipe_data')}}" style="height: 65px"></textarea> --}}
+                                        <tr class="p-2 mb-2">
+                                            <td style="text-align: center;" width="24%"><strong class="p-3">Tipe data yang digunakan</strong></td>
+                                            <td width="76%">
+                                            <textarea class="form-control" name="tipe_data" class="form-control m-input" id="floatingSoftware" value="{{old('tipe_data')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                            </td>
+                                        </tr>
+                                        {{-- <label class="p-1">
                                             Komponen yang di backup
                                         </label>
-                                        <textarea class="form-control" name="komponen_backup" class="form-control m-input" id="floatingKomponen" value="{{old('komponen_backup')}}" style="height: 65px"></textarea>
-                                        <label class="p-1">
+                                        <textarea class="form-control" name="komponen_backup" class="form-control m-input" id="floatingKomponen" value="{{old('komponen_backup')}}" style="height: 65px"></textarea> --}}
+                                        <tr class="p-2 mb-2">
+                                            <td style="text-align: center;" width="24%"><strong class="p-3">Komponen yang di backup</strong></td>
+                                            <td width="76%">
+                                            <textarea class="form-control" name="komponen_backup" class="form-control m-input" id="floatingKomponen" value="{{old('komponen_backup')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                            </td>
+                                        </tr>
+                                        {{-- <label class="p-1">
                                             Frekuensi backup
                                         </label>
-                                        <textarea class="form-control" name="frekuensi_backup" class="form-control m-input" id="floatingFrekuensi" value="{{old('frekuensi_backup')}}" style="height: 65px"></textarea>
-                                        <label class="p-1">
+                                        <textarea class="form-control" name="frekuensi_backup" class="form-control m-input" id="floatingFrekuensi" value="{{old('frekuensi_backup')}}" style="height: 65px"></textarea> --}}
+                                        <tr class="p-2 mb-2">
+                                            <td style="text-align: center;" width="24%"><strong class="p-3">Frekuensi backup</strong></td>
+                                            <td width="76%">
+                                            <textarea class="form-control" name="frekuensi_backup" class="form-control m-input" id="floatingFrekuensi" value="{{old('frekuensi_backup')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                            </td>
+                                        </tr>
+                                        {{-- <label class="p-1">
                                             Lama data backup disimpan
                                         </label>
-                                        <textarea class="form-control" name="lama_backup" class="form-control m-input" id="floatingBackup" value="{{old('lama_backup')}}" style="height: 65px"></textarea>
+                                        <textarea class="form-control" name="lama_backup" class="form-control m-input" id="floatingBackup" value="{{old('lama_backup')}}" style="height: 65px"></textarea> --}}
+                                        <tr class="p-2 mb-2">
+                                            <td style="text-align: center;" width="24%"><strong class="p-3">Lama data backup disimpan</strong></td>
+                                            <td width="76%">
+                                            <textarea class="form-control" name="lama_backup" class="form-control m-input" id="floatingBackup" value="{{old('lama_backup')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                            </td>
+                                        </tr>
                                     </div>
                                 </td>
                             </tr>
@@ -196,9 +225,12 @@
                                 <td style="text-align: center; vertical-align: middle; width: 24%;">
                                     <strong>Security</strong>
                                 </td>
-                                <td class="p-3">
+                                {{-- <td class="p-3">
                                     <textarea class="form-control" name="security" class="form-control m-input" id="floatingSecurity" value="{{old('security')}}" style="height: 65px;"></textarea>
-                                </td>
+                                </td> --}}
+                                <td width="76%">
+                                    <textarea class="form-control" name="security" class="form-control m-input" id="floatingSecurity" value="{{old('security')}}"  placeholder="Akses User" style="height: 65px;background: #343A40;color: rgb(227, 227, 227);" value='' readonly>{{$data->support}}</textarea></td>	
+                                    </td>
                             </tr>
                         </tbody>
                     </table>

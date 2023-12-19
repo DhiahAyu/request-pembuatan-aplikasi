@@ -49,16 +49,30 @@ class QualitycontrolController extends Controller
             'namaqcc' => $request->input('namaqcc'),
         ]);
 
-        foreach ($request->input('catatan') as $key => $cat) {
-                   $peng = new Pengujian([
-                            'qc_id' => $qualityControl->id,
-                            'pass' => isset($request->input('pass')[$key]) ? $request->input('pass')[$key] : null,
-                            'fail' => isset($request->input('fail')[$key]) ? $request->input('fail')[$key] : null, 
-                            'catatan' => $request->input('catatan')[$key],
-                        ]);
-                        $peng->save();
-                    }  
+        // foreach ($request->input('catatan') as $key => $cat) {
+        //            $peng = new Pengujian([
+        //                     'qc_id' => $qualityControl->id,
+        //                     'test_result' => isset($request->input('test_result')[$key]) ? $request->input('pass')[$key] : null,
+        //                     'catatan' => $request->input('catatan')[$key],
+        //                 ]);
+        //                 $peng->save();
+        //             }  
         
+        $catatanArray = $request->input('catatan', []);
+        $testResultArray = $request->input('test_result', []);
+
+        foreach ($catatanArray as $key => $cat) {
+            $testResult = isset($testResultArray[$key]) ? $testResultArray[$key] : null;
+
+            $peng = new Pengujian([
+                'qc_id' => $qualityControl->id,
+                'test_result' => $testResult,
+                'catatan' => $cat,
+            ]);
+
+            $peng->save();
+        }
+
             
             
             // foreach ($request->input('catatann') as $catt) {
@@ -98,10 +112,9 @@ class QualitycontrolController extends Controller
                     'qc_id' => $qualityControl->id,
                 ]);
             }
-
             
-
-            return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
+            return redirect()->route('admin')->with('success', 'Data Berhasil Ditambahkan');
+            // return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
         }
     private function storeFileAndGetPath($file)
                     {
