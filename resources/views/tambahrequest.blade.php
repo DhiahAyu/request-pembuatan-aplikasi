@@ -1,16 +1,10 @@
 @extends('layout.admin')
 
 @section('content')
-
-<div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <h1 class="text-center p-2 mb-3"> FORM REQUEST</h1>
+  <div style="margin: 60px">
+    <h1 class="text-center p-2 mb-3"> FORM REQUEST</h1>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-10">
-        <div class="card p-3">
-          <div class="card-body">   
-
       <form action="/insertdata" method="POST" enctype="multipart/form-data">
         @csrf
         <h5 class="mb-2 text-center">FORMULIR PERMINTAAN PEMBANGUNAN APLIKASI TI</h5>
@@ -52,7 +46,7 @@
         </div>
         <h5 class="mb-2 text-center">FLOWCHART</h5>
         <div class="input-group mb-3" >
-          <input type="file" name="flowchart" class="form-control" id="inputFileFlowchart" aria-describedby="inputFileAddon" aria-label="Upload" value="{{old('flowchart')}}">
+          <input type="file" name="flowchart[]" multiple class="form-control" id="inputFileFlowchart" aria-describedby="inputFileAddon" aria-label="Upload" value="{{old('flowchart')}}">
         </div>
         @error('flowchart')
               <div class="alert alert-danger">{{$message}}</div>
@@ -80,12 +74,11 @@
         </div>
         <h5 class="mb-2 text-center">UPLOAD DATA</h5>
         <div class="input-group mb-3" >
-          <input type="file" name="uploaddata" class="form-control" id="inputFileUploaddata" aria-describedby="inputFileAddon" aria-label="Upload" style="width: 100%; margin-bottom:6px;" value="{{old('uploaddata')}}">
+          <input type="file" name="uploaddata[]" multiple class="form-control" id="inputFileUploaddata" aria-describedby="inputFileAddon" aria-label="Upload" style="width: 100%; margin-bottom:6px;" value="{{old('uploaddata')}}">
           @error('uploaddata')
             <div class="alert alert-danger">{{$message}}</div>
           @enderror
         </div>
-        {{-- <button type="submit" class="btn btn-success">Tambah +</button> --}}
         <input type="hidden" name="action" id="formAction" value="">
         <div class="row" style="width: 100%; margin-top:6px;">	
           <div class="col-6 mb-4">

@@ -14,7 +14,6 @@
 <h1 class="text-center p-2">Data Form Request Change Analysis</h1>
 
     <div class="container">
-    <a href="/tambahdatacra" class="btn btn-success mb-2">Tambah +</a>
         <div class="row">
           <div class="col">
             <table class="table">
@@ -28,47 +27,63 @@
                   <th scope="col" style="text-align: center;">Project Name</th>
                   <th scope="col" style="text-align: center;">Impact Areas</th>
                   <th scope="col" style="text-align: center;">Priority</th>
-                  <th scope="col" style="text-align: center;">Justification of change for major development</th>
-                  <th scope="col" style="text-align: center;">Justification of change for minor development</th>
-                  <th scope="col" style="text-align: center;">General Context for Data Integration</th>
-                  <th scope="col" style="text-align: center;">Potential cost and extra time consideration?</th>
-                  <th scope="col" style="text-align: center;">Alternative Solutions Considered</th>
-                  <th scope="col" style="text-align: center;">Support from other parties</th>
-                  <th scope="col" style="text-align: center;">Infrastructure and Security</th>
-                  <th scope="col" style="text-align: center;">Additional Information/Comments</th>
+                  <th scope="col" style="text-align: center;">Justification Major</th>
+                  <th scope="col" style="text-align: center;">Justification Minor</th>
+                  <th scope="col" style="text-align: center;">General Context</th>
+                  <th scope="col" style="text-align: center;">Potential</th>
+                  <th scope="col" style="text-align: center;">Alternative Solutions</th>
+                  <th scope="col" style="text-align: center;">Support</th>
+                  <th scope="col" style="text-align: center;">Akses User</th>
+                  <th scope="col" style="text-align: center;">Topology Server</th>
+                  <th scope="col" style="text-align: center;">Spesifikasi Server</th>
+                  <th scope="col" style="text-align: center;">Software</th>
+                  <th scope="col" style="text-align: center;">Tipe Data</th>
+                  <th scope="col" style="text-align: center;">Komponen</th>
+                  <th scope="col" style="text-align: center;">Frekuensi</th>
+                  <th scope="col" style="text-align: center;">Lama Data</th>
+                  <th scope="col" style="text-align: center;">Security</th>
                 </tr>
               </thead>
               <tbody>
-                @php
-                  $no = 1;
-                @endphp
-                @if(isset($data))
-                @foreach ($data as $row)
-                <tr>
-                  <th scope="row">{{$no++}}</th>
-                  <td>{{$row->cr_analyst}}</td>
-                  <td>{{$row->originator_name}}</td>       
-                  <td>{{$row->data_owner}}</td>
-                  <td>{{$row->date}}</td>
-                  <td>{{$row->project_name}}</td>
-                  <td>{{$row->impact_areas}}</td>
-                  <td>{{$row->priority}}</td>
-                  <td>{{$row->justifcation_major}}</td>
-                  <td>{{$row->justifcation_minor}}</td>
-                  <td>{{$row->general_context}}</td>       
-                  <td>{{$row->pontential_cost}}</td>
-                  <td>{{$row->alternative_solutions}}</td>
-                  <td>{{$row->support}}</td>
-                  <td>{{$row->infrastructure}}</td>
-                  <td>{{$row->additional}}</td>
-                  {{-- <td style="width: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%px;">
-                    <a href="/updaterequests/{{$row->id}}" class="btn btn-info mb-2"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
-                    <a href="/delete" class="btn btn-danger delete mb-2" data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
-                  </td> --}}
-                </tr>
-                @endforeach
-                @endif
-              </tbody>
+    @php
+        $no = 1;
+    @endphp
+    @if(isset($data) && $data->count() > 0)
+        @foreach ($data as $data)
+            <tr>
+                <th scope="row">{{ $no++ }}</th>
+                <td>{{ $data->cr_analyst }}</td>
+                <td>{{ $data->originator_name }}</td>
+                <td>{{ $data->data_owner }}</td>
+                <td>{{ $data->date }}</td>
+                <td>{{ $data->project_name }}</td>
+                <td>{{ $data->impact_areas }}</td>
+                <td>{{ $data->priority }}</td>
+                <td>{{ $data->justificationMajor }}</td>
+                <td>{{ $data->justificationMinor }}</td>
+                <td>{{ $data->general_context }}</td>
+                <td>{{ $data->pontential_cost }}</td>
+                <td>{{ $data->alternative_solutions }}</td>
+                <td>{{ $data->support }}</td>
+                <td>{{ $data->infrastructure }}</td>
+                <td>{{ $data->additional }}</td>
+                <td>{{ $data->akses_user }}</td>
+                <td>{{ $data->topologi_server }}</td>
+                <td>{{ $data->spesifikasi_server }}</td>
+                <td>{{ $data->software }}</td>
+                <td>{{ $data->tipe_data }}</td>
+                <td>{{ $data->komponen_backup }}</td>
+                <td>{{ $data->frekuensi_backup }}</td>
+                <td>{{ $data->lama_backup }}</td>
+                <td>{{ $data->security }}</td>
+            </tr>
+        @endforeach
+    @else
+        <tr>
+            <td colspan="27" class="text-center">No data available</td>
+        </tr>
+    @endif
+</tbody>
             </table>
           </div>
         </div>

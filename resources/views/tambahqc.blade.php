@@ -1,13 +1,10 @@
 @extends('layout.admin')
 
 @section('content')
-
-    <div class="content-wrapper" style="margin-top: 3%;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-10">
-                    <div class="card p-3">
-                        <div class="card-body">  
+    <div class="card p-3" style="background: #ffffff;">
+            <div class="card-body"> 
+                <div class="container">
+                    <div class="row justify-content-center">
                             <tbody>
                                 <tr>
                                     <td colspan="2">
@@ -155,8 +152,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID Test Case</th>
-                                            <th scope="col">Pass</th>
-                                            <th scope="col">Fail</th>
+                                            <th scope="col">Test Result</th>
                                             <th scope="col">Catatan</th>
                                         </tr>
                                     </thead>
@@ -172,21 +168,34 @@
                                                 
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="pass[]" id="passCheckbox" placeholder="(diisi dengan [X] apabila dari hasil pengetesan tidak ditemukan bug/error)" style="height: 65px"> 
+                                                <p>&nbsp;Pass &nbsp;&nbsp;&nbsp; Fail</p>
+                                                &nbsp;&nbsp;
+                                                <input type="checkbox" name="test_result[]" id="passCheckbox" style="height: 45px" value="pass" onchange="updateCheckboxes('passCheckbox', 'failCheckbox')"> 
                                                 @error('dibuat')
                                                     <div class="alert alert-danger">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
-                                            </td>
-                                            <td>
-                                                <input type="checkbox" name="fail[]" id="failCheckbox" placeholder="(diisi dengan [X] apabila dari hasil pengetesan tidak ditemukan bug/error)" style="height: 65px">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="checkbox" name="test_result[]" id="failCheckbox" style="height: 45px; " value="fail" onchange="updateCheckboxes('failCheckbox', 'passCheckbox')">
                                                 @error('dibuat')
                                                     <div class="alert alert-danger">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
-                                            </td>                                            
+                                            </td> 
+                                            <script>
+                                                function updateCheckboxes(checkedId, otherId) {
+                                                    var checkedCheckbox = document.getElementById(checkedId);
+                                                    var otherCheckbox = document.getElementById(otherId);
+                                            
+                                                    if (checkedCheckbox.checked) {
+                                                        otherCheckbox.disabled = true;
+                                                    } else {
+                                                        otherCheckbox.disabled = false;
+                                                    }
+                                                }
+                                            </script>                                                                               
                                             <td>
                                                 <textarea name="catatan[]" class="form-control m-input" id="floatingcatatan" placeholder="(diisi dengan [X] apabila dari hasil pengetesan tidak ditemukan bug/error)" value="{{old('jumlahcase')}}" style="height: 65px"></textarea>
                                                 {{-- <textarea class="form-control m-input" name="catatan[]" id="floatingcatatan" placeholder="(diisi dengan [X] apabila dari hasil pengetesan tidak ditemukan bug/error)" style="height: 65px"> --}}

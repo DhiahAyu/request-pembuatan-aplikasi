@@ -11,6 +11,9 @@ class Formrequest extends Model
 
     protected $guarded =[];
     protected $table = 'formrequests';
+    protected $fillable = [
+        'nama_aplikasi', 'sponsor_proyek', 'latar_belakang', 'tujuan', 'wanted_feature','current_condition', 'kendala', 'ruang_lingkup',
+    ];
 
     // -----RELASI ANTAR TABLE-----
 
@@ -32,5 +35,15 @@ class Formrequest extends Model
     public function formuat()
     {
         return $this->hasOne(FormUAT::class,'request_id', 'id');
+    }
+
+    public function flowchart()
+    {
+        return $this->hasMany(FlowchartImage::class);
+    }
+
+    public function uploaddata()
+    {
+        return $this->hasMany(UploaddataImage::class);
     }
 }

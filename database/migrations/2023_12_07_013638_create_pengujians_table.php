@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pengujians', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('qc_id'); 
-            $table->text('pass')->nullable();
-            $table->text('fail')->nullable();
+            $table->text('test_result')->nullable();
+            // $table->text('fail')->nullable();
             $table->text('catatan');
             $table->timestamps();
 

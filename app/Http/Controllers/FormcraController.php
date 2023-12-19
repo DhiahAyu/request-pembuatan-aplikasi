@@ -61,7 +61,9 @@ class FormcraController extends Controller
             // dd($e->getMessage());
             dd($formcra);
         }
-        return redirect()->route('indexMethod')->with('success', 'Data berhasil ditambahkan');
+
+         return redirect()->route('admin')->with('success', 'Data Berhasil Ditambahkan');
+        // return redirect()->route('indexMethod')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function viewcra($id){
@@ -71,4 +73,19 @@ class FormcraController extends Controller
     
         return view('form_cra_readonly', compact('data', 'selectedImpactAreas', 'selectedPriority'));
     }
+
+    public function viewid($id)
+    {
+        $data = Formcra::find($id);
+        // dd($data);
+        return view ('formcra',compact('data'));
+    }
+
+//     public function viewid(Formcra $data)
+// {
+//     // dd($data);
+//     return view('formcra', compact('data'));
+// }
+
+
 }

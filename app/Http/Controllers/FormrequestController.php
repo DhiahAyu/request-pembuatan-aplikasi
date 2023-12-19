@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Formrequest;
 use App\Models\Formcra;
+use App\Models\FlowchartImage;
+use App\Models\UploaddataImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use PDF;
@@ -47,45 +49,49 @@ class FormrequestController extends Controller
                 'latar_belakang'=>'required',
                 'tujuan'=>'required',
                 'wanted_feature'=>'required',
-                'flowchart'=>'required',
                 'current_condition'=>'required',
                 'kendala'=>'required',
                 'ruang_lingkup'=>'required',
-                'uploaddata'=>'required',
             ],[
                 'nama_aplikasi.required'=>'Nama Aplikasi wajib diisi',
                 'sponsor_proyek.required'=>'Sponsor Proyek wajib diisi',
                 'latar_belakang.required'=>'Latar Belakang wajib diisi',
                 'tujuan.required'=>'Tujuan wajib diisi',
-                'flowchart.required'=>'Flowchart wajib diisi',
                 'current_condition.required'=>'Kondisi saat ini wajib diisi',
                 'kendala.required'=>'Kendala wajib diisi',
                 'ruang_lingkup.required'=>'Ruang lingkup wajib diisi',
-                'uploaddata.required'=>'Upload Data wajib diisi',
             ]);
-    
+
             $data = Formrequest::create($request->all());
             $data->status = 'Pending'; // Set status menjadi "Pending"
-            $data->formsfill='1/3';
+            $data->formsfill = '1/3';
             $data->save();
 
             if ($request->hasFile('flowchart') && $request->hasFile('uploaddata')) {
-                $flowchartFile = $request->file('flowchart');
-                $uploadDataFile = $request->file('uploaddata');
-            
-                $flowchartFileName = $flowchartFile->getClientOriginalName();
-                $uploadDataFileName = $uploadDataFile->getClientOriginalName();
-            
-                $flowchartFile->storeAs('public/gambarflowchart/', $flowchartFileName);
-                $uploadDataFile->storeAs('public/gambarflowchart/', $uploadDataFileName);
-            
-                $data->flowchart = 'storage/gambarflowchart/' . $flowchartFileName;
-                $data->uploaddata = 'storage/gambarflowchart/' . $uploadDataFileName;
-            
+                foreach ($request->file('flowchart') as $flowchartFile) {
+                    $flowchartFileName = $flowchartFile->getClientOriginalName();
+                    $flowchartFile->storeAs('public/gambarflowchart/', $flowchartFileName);
+
+                    $flowchartimage = new FlowchartImage([
+                        'flowchart' => 'storage/gambarflowchart/' . $flowchartFileName,
+                        'request_id' => $data->id,
+                    ]);
+                    $flowchartimage->save();
+                }
+
+                foreach ($request->file('uploaddata') as $uploadDataFile) {
+                    $uploadDataFileName = $uploadDataFile->getClientOriginalName();
+                    $uploadDataFile->storeAs('public/gambarflowchart/', $uploadDataFileName);
+
+                    $uploaddataimage = new UploaddataImage([
+                        'uploaddata' => 'storage/gambarflowchart/' . $uploadDataFileName,
+                        'request_id' => $data->id,
+                    ]);
+                    $uploaddataimage->save();
+                }
+
                 $data->save();
             }
-            
-            
 
         } elseif ($request->input('action') === 'saveDraft') {
             $data = Formrequest::create($request->all());

@@ -18,13 +18,10 @@ class UatController extends Controller
     public function viewuta($id) {
         $formrequest = Formsrs::with('rfc', 'moduls.requirements')->where('request_id', $id)->first();
         return view('form_uat', compact('formrequest'));
-        // dd($formrequest);
     }    
 
     public function insertData(Request $request)
     {
-        // var_dump($_POST);exit();
-        // Validasi data sesuai kebutuhan Anda
         $request->validate([
             // Tambahkan aturan validasi jika diperlukan
         ]);
