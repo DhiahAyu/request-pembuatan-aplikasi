@@ -24,7 +24,6 @@ class UatController extends Controller
     public function insertData(Request $request)
     {
         // var_dump($_POST);exit();
-        // Validasi data sesuai kebutuhan Anda
         $request->validate([
             // Tambahkan aturan validasi jika diperlukan
         ]);
@@ -60,14 +59,16 @@ class UatController extends Controller
             'ttdba' => $this->storeFileAndGetPath($request->file('customFileBA')),
         ]);
 
-        // Simpan data UAT
+        // Simpan UAT
         foreach ($request->input('txareaSkenario') as $key => $skenario) {
             $uat = new UAT([
                 'formuat_id' => $formuat->id,
                 'na' => $request->input('textNA')[$key],
                 'tahapan_scenario' => $skenario,
-                'test_result_pass' => $request->input('txareaPass')[$key],
-                'test_result_fail' => $request->input('txareaFail')[$key],
+                'test_result' => $request->input('testresult')[$key],
+                // 'test_result' => implode(',', $request->input('testresult')[$key]),
+                // 'test_result' => isset($request->input('testresult')[$key]) ? $request->input('testresult')[$key] : null,
+                // 'test_result' => isset($request->input('testresult')[$key]) ? $request->input('testresult')[$key] : null,
                 'tester' => $request->input('txareaTester')[$key],
             ]);
 
@@ -82,13 +83,15 @@ class UatController extends Controller
             $uat->save();
         }
 
-        // Simpan data UAL
+        // Simpan UAL
         foreach ($request->input('txareaSkenarioUAL') as $key => $skenarioual) {
             $ual = new UAL([
                 'formuat_id' => $formuat->id,
                 'tahapan_scenario' => $skenarioual,
-                'test_result_pass' => $request->input('txareaPassUAL')[$key],
-                'test_result_fail' => $request->input('txareaFailUAL')[$key],
+                'test_result' => $request->input('testresultUAL')[$key],
+                // 'test_result' => implode(',', $request->input('testresultUAL')[$key]),
+                // 'test_result' => isset($request->input('testresultUAL')[$key]) ? $request->input('testresult')[$key] : null,
+                // 'test_result' => isset($request->input('testresultUAL')[$key]) ? $request->input('testresultUAL')[$key] : null,
                 'tester' => $request->input('txareaTesterUAL')[$key],
             ]);
 
@@ -103,21 +106,15 @@ class UatController extends Controller
             $ual->save();
         }
 
-
+        //Catatan Testing
         foreach ($request->input('textCatatan') as $key => $catatan) {
-        // Simpan data Catatan Testing
         CatatanTesting::create([
             'formuat_id' => $formuat->id,
             'catatan' => $catatan,
             'user' => $request->input('textUser')[$key],
-            // Tambahkan kolom-kolom lain sesuai kebutuhan
         ]);
     }
-
-        // Tambahkan logika penyimpanan data lainnya sesuai kebutuhan Anda
-
-        // Redirect atau berikan respons sesuai kebutuhan Anda
-        // return redirect()->back()->with('success', 'Data berhasil disimpan');
+        // return redirect()->route('user')->with('success', 'Form UAT Berhasil Dikirim');
         dd($request->all());
     }
     

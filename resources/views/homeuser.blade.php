@@ -56,13 +56,6 @@
                             <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
                             <a href="#" class="btn btn-danger delete" data-id="{{$row->id}}" data-nama="{{$row->nama_aplikasi}}"><i class="fas fa-trash" style="color: #ffffff;"></i></a>
                         @endif
-                        @if ($row->status=='Approved'&& $row->formsfill != '3/3')
-                            <a href="/tambahsrs/{{$row->id}}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> SRS</i></a>
-                        @endif
-                        @if ($row->status=='Approved'&& $row->formsfill == '3/3')
-                        <h6>SRS Telah Di kirim</h6>
-                        {{-- <a href="" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA Telah di buat</i></a> --}}
-                        @endif
                         @if ($row->status=='Approved'&& $row->formsfill == '4/3')
                         <a href="/UAT/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
                         {{-- <a href="" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> CRA Telah di buat</i></a> --}}

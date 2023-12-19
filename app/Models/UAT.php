@@ -15,8 +15,7 @@ class Uat extends Model
         'formuat_id',
         'na',
         'tahapan_scenario',
-        'test_result_pass',
-        'test_result_fail',
+        'test_result',
         'tester',
         'signature',
     ];

@@ -45,7 +45,7 @@ Route::get('/home', function () {
             return redirect('/planning');
         }
     } else {
-        return redirect('');
+        return view('login');
     }
 })->name('home');
 

@@ -197,6 +197,7 @@ class FormrequestController extends Controller
                 $data->pesan = $request->rejected_message;
                 $data->status = 'Rejected'; // Gantikan dengan nama status yang sesuai
                 $data->save();
+                // dd($data);
                 return redirect()->route('admin')->with('success', 'Data Berhasil Di Reject');
             } else {
                 return redirect()->route('admin')->with('error', 'Data Tidak Ditemukan');

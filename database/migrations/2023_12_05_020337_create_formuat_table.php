@@ -14,6 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('request_id'); // Relasi ke tabel rfcs
             $table->string('versi')->nullable();
             $table->string('dibuat_oleh')->nullable();
+            $table->string('tanggal_revisi')->nullable();
             $table->string('disetujui_oleh')->nullable();
             $table->string('tanggal_persetujuan')->nullable();
             $table->string('keterangan')->nullable();
@@ -22,15 +23,19 @@ return new class extends Migration
             $table->string('jumlahtcerror')->nullable();
             $table->string('namapjp')->nullable();
             $table->string('jabatanpjp')->nullable();
+            $table->string('tanggalttdpjp')->nullable();
             $table->string('ttdpjp')->nullable();
             $table->string('namakte')->nullable();
             $table->string('jabatankte')->nullable();
+            $table->string('tanggalttdkte')->nullable();
             $table->string('ttdkte')->nullable();
             $table->string('namasp')->nullable();
             $table->string('jabatansp')->nullable();
+            $table->string('tanggalttddsp')->nullable();
             $table->string('ttdsp')->nullable();
             $table->string('namaba')->nullable();
             $table->string('jabatanba')->nullable();
+            $table->string('tanggalttdba')->nullable();
             $table->string('ttdba')->nullable();
             $table->string('namapc')->nullable();
             $table->string('jabatanpc')->nullable();

@@ -24,7 +24,7 @@
                     $no = 1;
                 @endphp
                 @foreach ($data as $row)
-                @if ($row->kirimke === 'Planning')
+                @if ($row->kirimke === 'planning')
                 <tr style="text-align: center; align-items: center; vertical-align:middle;">
                     <th scope="row" style="text-align: center; align-items: center; vertical-align:middle;">{{$no++}}</th>
                     <td style="text-align: center; align-items: center; vertical-align:middle;">{{ date('d/m/Y', strtotime($row->created_at)) }}</td>
@@ -32,8 +32,14 @@
                     <td style="text-align: center; align-items: center; vertical-align:middle;">{{$row->rfc->sponsor_proyek}}</td>
                     <td style="text-align: center; align-items: center; vertical-align:middle;">
                         <a href="/viewcra/{{$row->id}}" class="btn btn-info"><i class="fas fa-solid fa-eye" style="color: #ffffff;"></i></a>
-                        {{-- BTN EXPORT PDF --}}
-                        {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
+                        @if ($row->rfc->formsfill == '2/3')
+                            <a href="/tambahsrs/{{$row->rfc->id}}" class="btn btn-success"><i class="fas fa-solid fa-plus" style="color: #ffffff;"> SRS</i></a>
+                        @else
+                            <label>SRS Telah Di kirim</label>
+                        @endif
+                        {{-- @if ($row->rfc->status=='Approved'&& $row->rfc->formsfill == '3/3')
+                        <label>SRS Telah Di kirim</label>
+                        @endif --}}
                     </td>
                 </tr>
                 @endif

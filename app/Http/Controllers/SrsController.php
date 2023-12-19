@@ -84,7 +84,7 @@ public function store(Request $request)
         $formrequest = Formrequest::find($request->input('request_id'));
         $formrequest->formsfill = '3/3';
         $formrequest->save();
-        return redirect()->route('user')->with('success', 'Data SRS berhasil disimpan.');
+        return redirect()->route('planning')->with('success', 'Data SRS berhasil disimpan.');
     } catch (\Exception $e) {
         \Log::error($e->getMessage());
         // return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');

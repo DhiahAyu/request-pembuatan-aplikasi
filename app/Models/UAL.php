@@ -13,8 +13,7 @@ class UAL extends Model
     protected $fillable = [
         'formuat_id',
         'tahapan_scenario',
-        'test_result_pass',
-        'test_result_fail',
+        'test_result',
         'tester',
         'signature',
     ];

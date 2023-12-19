@@ -58,10 +58,10 @@ class FormcraController extends Controller
             }
             
         } catch (\Exception $e) {
-            // dd($e->getMessage());
-            dd($formcra);
+            dd($e->getMessage());
+            // dd($formcra);
         }
-        return redirect()->route('indexMethod')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function viewcra($id){

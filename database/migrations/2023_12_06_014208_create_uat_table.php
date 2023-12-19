@@ -16,8 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('formuat_id');
             $table->string('na')->nullable();
             $table->text('tahapan_scenario')->nullable();
-            $table->text('test_result_pass')->nullable();
-            $table->text('test_result_fail')->nullable();
+            $table->text('test_result')->nullable();
             $table->text('tester')->nullable();
             $table->string('signature')->nullable();
             $table->timestamps();

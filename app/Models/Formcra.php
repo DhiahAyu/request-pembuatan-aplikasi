@@ -15,7 +15,7 @@ class Formcra extends Model
         'request_id', 'cr_analyst', 'originator_name', 'data_owner', 'date', 'project_name', 'impact_areas',
         'priority', 'general_context', 'pontential_cost',
         'alternative_solutions', 'support', 'akses_user', 'topologi_server', 'spesifikasi_server',
-        'software', 'tipe_data', 'komponen_backup', 'frekuensi_backup', 'lama_backup', 'security', 'actioncra',
+        'software', 'tipe_data', 'komponen_backup', 'frekuensi_backup', 'lama_backup', 'security', 'actioncra','kirimke',
     ];
 
     public function rfc()
