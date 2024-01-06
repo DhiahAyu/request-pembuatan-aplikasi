@@ -2,9 +2,13 @@
 
 @section('content')
 
+<div class="content">
+    <div class="col-12">
+        <div class="card">
+        
 <div class="card-header border-0">
     <div class="justify-content-between" style="text-justify:center;">
-        <h1 class="text-center"><strong>HALAMAN HOME UNTUK ROLE DIGITAL AIRPORT</strong></h1>
+        <h3 class="text-center"><strong>HALAMAN HOME UNTUK ROLE DIGITAL AIRPORT</strong></h3>
     </div>
 </div>
 <div class="card-body">
@@ -42,5 +46,7 @@
         </table>
     </div>
 </div>
-
-@endsection
+@endsection  
+        </div>
+    </div>
+</div>

@@ -13,8 +13,8 @@
     <body>
         <div class="row">
             <div class="col">
-                <img src="{{asset('template/dist/img/bandara.jpg')}}" style="absolute; width: 650px; height:590px;">
-                <div style="position: absolute; top: 0; left: 0; width: 650px; height: 590px; background: linear-gradient(rgba(11, 8, 169, 0.25), rgba(83, 80, 248, 0.50));"></div>
+                <img src="{{asset('template/dist/img/bandara.jpg')}}" style="absolute; width: 650px; height:650px;">
+                <div style="position: absolute; top: 0; left: 0; width: 650px; height: 650px; background: linear-gradient(rgba(11, 8, 169, 0.25), rgba(83, 80, 248, 0.50));"></div>
             </div>
             <div class="col d-flex align-items-center">
                 <div class="container" style="margin: 2em;">

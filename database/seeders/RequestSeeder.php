@@ -24,6 +24,7 @@ class RequestSeeder extends Seeder
             'ruang_lingkup' =>'Ruang Lingkup submited',
             'status' => 'Pending',
             'action' => 'submit',
+            'formsfill' => '1/3',
         ],[
             'nama_aplikasi' =>'App Draft',
             'sponsor_proyek' =>'Sponsor Draft',
@@ -35,6 +36,7 @@ class RequestSeeder extends Seeder
             'ruang_lingkup' =>'Ruang Lingkup Draft',
             'status' => 'Not Yet Submitted',
             'action' => 'saveDraft',
+            'formsfill' => '1/3',
         ],[
             'nama_aplikasi' =>'App Approve',
             'sponsor_proyek' =>'Sponsor Approve',
@@ -46,6 +48,7 @@ class RequestSeeder extends Seeder
             'ruang_lingkup' =>'Ruang Lingkup Approve',
             'status' => 'Approved',
             'action' => 'submit',
+            'formsfill' => '1/3',
         ],[
             'nama_aplikasi' =>'App Rejected',
             'sponsor_proyek' =>'Sponsor Rejected',
@@ -57,6 +60,7 @@ class RequestSeeder extends Seeder
             'ruang_lingkup' =>'Ruang Lingkup Rejected',
             'status' => 'Rejected',
             'action' => 'submit',
+            'formsfill' => '1/3',
         ]]);
     }
 }

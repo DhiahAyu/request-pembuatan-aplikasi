@@ -52,11 +52,13 @@ Route::get('/home', function () {
 Route::middleware(['auth'])->group(function(){
     Route::get('/logout',[SessionController::class,'logout']);
     Route::get('/admin',[AdminController::class,'index']); 
+    Route::get('/admin', 'FormrequestController@homeadmin')->name('admin');
     Route::get('/admin',[AdminController::class,'admin'])->middleware('userAccess:admin')->name('admin'); 
     Route::get('/user',[AdminController::class,'user'])->middleware('userAccess:user')->name('user'); 
     Route::get('/project',[AdminController::class,'project'])->middleware('userAccess:project')->name('project');
     Route::get('/digiport',[AdminController::class,'digiport'])->middleware('userAccess:digiport')->name('digiport');
-    Route::get('/planning',[AdminController::class,'planning'])->middleware('userAccess:planning')->name('planning');   
+    Route::get('/planning',[AdminController::class,'planning'])->middleware('userAccess:planning')->name('planning'); 
+    Route::get('/admin/search',[AdminController::class,'seacrh']);   
 });
 
 //----------CRA-----------
@@ -167,6 +169,8 @@ Route::get('/QC/{id}', [QualitycontrolController::class, 'indexQC'])->name('inde
 Route::post('/insertqc', [QualitycontrolController::class, 'insertqc'])->name('insertqc');
 
 Route::get('/tambahdataqc',[QualitycontrolController::class, 'tambahdataqc'])->name('tambahdataqc');
+
+Route::get('/viewqc/{id}',[QualitycontrolController::class, 'viewqc'])->name('viewqc');
 
 //=========FormUAT========
 Route::get('/UAT', function () {

@@ -43,11 +43,13 @@
                                 <label for="floatingFitur"></label>
                             </div>
                             <h5 class="mb-2 text-center">FLOWCHART</h5>
-                            <div class="input-group mb-3">
-                                <input type="file" name="flowchart" class="form-control" id="inputFileFlowchart" aria-describedby="inputFileAddon" style="background: #343A40;color: rgb(227, 227, 227);";>
-                                <span class="input-group-text" id="inputFileAddon">{{$data->flowchart}}</span>
+                            <div class="input-group mb-3" >
+                              <input type="file" name="flowchart[]" multiple class="form-control" id="inputFileFlowchart" aria-describedby="inputFileAddon" aria-label="Upload" value="{{old('flowchart')}}">
                             </div>
-
+                            @error('flowchart')
+                                  <div class="alert alert-danger">{{$message}}</div>
+                             @enderror
+                            </div>
                             <h5 class="mb-2 text-center">KONDISI SAAT INI</h5>
                             <div class="form mb-3">
                                 <textarea class="form-control" name="current_condition" placeholder="Kondisi saat ini" id="floatingKondisi" style="height: 65px; background: #343A40;color: rgb(227, 227, 227);">{{$data->current_condition}}</textarea>
@@ -64,9 +66,11 @@
                                 <label for="floatingLingkup"></label>
                             </div>
                             <h5 class="mb-2 text-center">UPLOAD DATA</h5>
-                            <div class="input-group mb-3">
-                                <input type="file" name="uploaddata" class="form-control" id="inputFileFlowchart" aria-describedby="inputFileAddon" style="background: #343A40;color: rgb(227, 227, 227);";>
-                                <span class="input-group-text" id="inputFileAddon">{{$data->uploaddata}}</span>
+                            <div class="input-group mb-3" >
+                            <input type="file" name="uploaddata[]" multiple class="form-control" id="inputFileUploaddata" aria-describedby="inputFileAddon" aria-label="Upload" style="width: 100%; margin-bottom:6px;" value="{{old('uploaddata')}}">
+                            @error('uploaddata')
+                                <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
                             </div>
                             <button type="submit" class="btn btn-success">Tambah +</button>
                         </form>

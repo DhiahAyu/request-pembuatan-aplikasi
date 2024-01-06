@@ -6,6 +6,7 @@ use App\Models\Formcra;
 use App\Models\Formrequest;
 use App\Models\ChangeMajor;
 use App\Models\ChangeMinor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FormcraController extends Controller
@@ -69,9 +70,10 @@ class FormcraController extends Controller
 
     public function viewcra($id){
         $data = Formcra::find($id);
+        $dataa = User::all();
         $selectedImpactAreas = explode(' , ', $data->impact_areas);
         $selectedPriority = explode(' , ', $data->priority);
     
-        return view('form_cra_readonly', compact('data', 'selectedImpactAreas', 'selectedPriority'));
+        return view('form_cra_readonly', compact('data', 'selectedImpactAreas', 'selectedPriority', 'dataa'));
     }
 }

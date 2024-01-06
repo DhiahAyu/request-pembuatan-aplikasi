@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Qualitycontrol;
 use App\Models\Formsrs;
+use App\Models\Formrequest;
 use App\Models\Pengujian;
 use App\Models\Penginfrastruktur;
 
@@ -49,15 +50,15 @@ class QualitycontrolController extends Controller
             'namaqcc' => $request->input('namaqcc'),
         ]);
 
-        // foreach ($request->input('catatan') as $key => $cat) {
-        //            $peng = new Pengujian([
-        //                     'qc_id' => $qualityControl->id,
-        //                     'test_result' => isset($request->input('test_result')[$key]) ? $request->input('pass')[$key] : null,
-        //                     'catatan' => $request->input('catatan')[$key],
-        //                 ]);
-        //                 $peng->save();
-        //             }  
-        
+        // $formrequest = Formsrs::find($request->input('srs_id'));
+        //     $formrequest->rfc->formsfill = '4/3';
+        //     $formfillsave= Formrequest::create($formrequest);
+        //     $formfillsave->save();
+        $formrequest = Formsrs::find($request->input('srs_id'));
+        $formrequest->rfc->formsfill = '4/3';
+        $formrequest->rfc->save();
+
+
         $catatanArray = $request->input('catatan', []);
         $testResultArray = $request->input('test_result', []);
 
@@ -72,31 +73,6 @@ class QualitycontrolController extends Controller
 
             $peng->save();
         }
-
-            
-            
-            // foreach ($request->input('catatann') as $catt) {
-            //     $major = new Penginfrastruktur([
-            //         'qc_id' => $qualityControl->id,
-            //         'nomor' =>$request->input('nomor'),
-            //         'aspekinfrastruktur' =>$request->input('aspekinfrastruktur'),
-            //         'hasiltes' =>$request->input('hasiltes'),
-            //         'catatann' =>$request->input('catatann'),
-            //     ]);
-            //     $major->save();
-            //     // dd($request->all());
-            // }
-
-            // foreach ($request->input('catatann') as $key => $catt) {
-            //     for ($i = 0; $i < count($request->input('catatann')); $i++) {
-            //     Penginfrastruktur::create([
-            //         'nomor' => isset($request->input('nomor')[$key]) ? $request->input('nomor')[$key] : null,
-            //         'aspekinfrastruktur' => isset($request->input('aspekinfrastruktur')[$key]) ? $request->input('aspekinfrastruktur')[$key] : null,
-            //         'hasiltes' => isset($request->input('hasiltes')[$key]) ? $request->input('hasiltes')[$key] : null, 
-            //         'catatann' => $request->input('catatann')[$i],
-            //         'qc_id' => $qualityControl->id,
-            //     ]);}
-            // }
 
             $catatannArray = $request->input('catatann') ?? [];
             $nomorArray = $request->input('nomor') ?? [];
@@ -116,6 +92,7 @@ class QualitycontrolController extends Controller
             return redirect()->route('admin')->with('success', 'Data Berhasil Ditambahkan');
             // return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
         }
+
     private function storeFileAndGetPath($file)
                     {
                         if ($file) {
@@ -131,5 +108,12 @@ class QualitycontrolController extends Controller
         $qualityControls = Qualitycontrol::all();
 
         return view('qualitycontrols.index', compact('qualityControls'));
+    }
+
+    public function viewqc($id){
+        // $formrequest = Formsrs::with('rfc', 'moduls.requirements')->where('request_id', $id)->first();
+        $data = Formsrs::find($id);
+    
+        return view('form_qc_readonly', compact('data'));
     }
 }

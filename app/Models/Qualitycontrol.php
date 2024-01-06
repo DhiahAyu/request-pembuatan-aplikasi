@@ -43,6 +43,12 @@ class Qualitycontrol extends Model
         return $this->hasMany(Penginfrastruktur::class, 'qc_id', 'id');
     }
 
+ 
+    public function formsrs()
+    {
+        return $this->belongsTo(Formsrs::class);
+    }
+
 }
 
 

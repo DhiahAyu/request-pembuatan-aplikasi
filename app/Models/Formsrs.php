@@ -23,6 +23,16 @@ class Formsrs extends Model
     {
         return $this->hasMany(Modul::class, 'srs_id');
     }
+
+    // public function qc()
+    // {
+    //     return $this->hasOne(Modul::class, 'srs_id');
+    // }
+
+    public function qc()
+{
+    return $this->hasOne(Qualitycontrol::class, 'srs_id'); // Gantilah QCModel dengan nama model QC yang sesuai
+}
     
 }
 

@@ -1,8 +1,17 @@
 @extends('layout.admin')
 
 @section('content')
-    <div class="card p-3" style="background: #ffffff;">
-            <div class="card-body"> 
+
+
+<div class="content">
+    <div class="col-12 mt-2">
+        <div class="card" style="background: #ffffff;">
+            <div class="content-header">
+                <div class="container-fluid">
+                <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            {{-- <div class="card-body">  --}}
                 <div class="container">
                     <div class="row justify-content-center">
                             <tbody>
@@ -16,7 +25,7 @@
                                 <form action="/insertqc" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="srs_id" value="{{ $formrequest->id}}">
-                                <tr>
+                                <tr >
                                     <td colspan="2">
                                         <div class="p-2" align="center">
                                            RIWAYAT PERUBAHAN
@@ -25,7 +34,7 @@
                                 </tr>
                                 <table class="table table-bordered">
                                     <thead>
-                                    
+                                    <tbody style="text-align: center; ">
                                         <tr style="text-align: center;vertical-align: middle;" width="24%">
                                             <th scope="col">Versi</th>
                                             <th scope="col">Dibuat Oleh</th>
@@ -35,7 +44,6 @@
                                             <th scope="col">Keterangan</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
                                         <tr>
                                             <td>
                                                 <textarea class="form-control"  name="versi" class="form-control m-input" id="floatinVersi" placeholder="" value="{{old('versi')}}" style="height: 65px"></textarea>
@@ -92,7 +100,7 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered">
-                                    <tbody>
+                                <tbody style="text-align: center;">
                                         <tr class="p-2">
                                             <td style="text-align: center; vertical-align: middle;" width="24%">
                                                 <strong>Nama Aplikasi</strong>
@@ -137,7 +145,8 @@
                                                 <strong>Tanggal Pengujian</strong>
                                             </td>
                                             <td width="76%">
-                                                <textarea class="form-control"  name="tglpengujian" class="form-control m-input" id="floatingTglpengujian" placeholder="(diisi dengan tanggal pelaksanaan pengujian aplikasi)" value="{{old('tglpengujian')}}" style="height: 65px"></textarea>
+                                                {{-- <textarea class="form-control"  name="tglpengujian" class="form-control m-input" id="floatingTglpengujian" placeholder="(diisi dengan tanggal pelaksanaan pengujian aplikasi)" value="{{old('tglpengujian')}}" style="height: 65px"></textarea> --}}
+                                                <input type="date" class="form-control"  name="tglpengujian" class="form-control m-input" id="floatingTglpengujian" placeholder="" value="{{old('tglpengujian')}}" style="height: 65px">
                                                 @error('dibuat')
                                                 <div class="alert alert-danger">
                                                     {{$message}}
@@ -149,14 +158,14 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered">
-                                    <thead>
+                                    <tbody style="text-align: center;">
                                         <tr>
                                             <th scope="col">ID Test Case</th>
                                             <th scope="col">Test Result</th>
                                             <th scope="col">Catatan</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                    </tbody>
+                                    <tbody style="text-align: center;">
                                         @php
                                         $id_TC =1;
                                         @endphp
@@ -213,14 +222,14 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered">
-                                    <thead>
+                                    <tbody style="text-align: center;">
                                         <tr>
                                             <th scope="col">Jumlah Test Case</th>
                                             <th scope="col">Jumlah Test Case yang berhasil</th>
                                             <th scope="col">Jumlah Test Case yang ditemukan error/ bug</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                    </tbody>
+                                    <tbody style="text-align: center;">
                                         <tr>
                                             <td>
                                                 <textarea class="form-control"  name="jumlahcase" class="form-control m-input" id="floatingJumlahcase" placeholder="Diisi dengan jumlah test case" value="{{old('jumlahcase')}}" style="height: 65px"></textarea>
@@ -250,7 +259,7 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered">
-                                    <thead>
+                                    <tbody style="text-align: center;">
                                         <td width="76%">	
                                             <div class="container mb-3">
                                                 <button type="button" class="btn btn-success" id="addpenginfra">
@@ -272,8 +281,8 @@
                                             <th scope="col">Hasil Pengetesan </th>
                                             <th scope="col">Catatan</th>
                                         </tr> --}}
-                                    </thead>
-                                    <tbody>
+                                    </tbody>
+                                    <tbody style="text-align: center;">
                                         {{-- <tr>
                                             <td>
                                                 <textarea class="form-control"  name="nomor" class="form-control m-input" id="floatingnomor" placeholder="Nomor" value="{{old('nomor')}}" style="height: 65px"></textarea>
@@ -311,14 +320,14 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered">
-                                    <thead>
+                                    <tbody style="text-align: center;">
                                         <tr>
                                             <th scope="col">Jabatan Proyek</th>
                                             <th scope="col">Nama & Jabatan</th>
                                             <th scope="col">Tanda Tangan</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                    </tbody>
+                                    <tbody style="text-align: center;">
                                         <tr>
                                             <td style="text-align: center;vertical-align: middle;" width="24%">
                                                 <strong>Ketua Tim Evaluasi</strong>
@@ -363,13 +372,13 @@
                                         </tr>
                                     </tbody>
                                     <table class="table table-bordered" style="margin-top: 1em;">
-                                    <thead>
+                                    <tbody style="text-align: center;">
                                         <tr>
                                             <th scope="col">Jabatan Proyek</th>
                                             <th scope="col"> <center> Nama & Jabatan </center></th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                    </tbody>
+                                    <tbody style="text-align: center; ">
                                         <tr>
                                             <td style="text-align: center;vertical-align: middle;" width="24%">
                                                 <strong>Project Controller</strong>
@@ -486,7 +495,29 @@
           });
       });
     </script>
-  
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var passCheckboxes = document.querySelectorAll('input[name^="test_result"][value="pass"]');
+        var failCheckboxes = document.querySelectorAll('input[name^="test_result"][value="fail"]');
+    
+        passCheckboxes.forEach(function (passCheckbox) {
+            passCheckbox.addEventListener('change', function () {
+                // Jika checkbox "Pass" dipilih, nonaktifkan checkbox "Fail" yang bersangkutan
+                var correspondingFailCheckbox = passCheckbox.closest('tr').querySelector('input[name^="test_result"][value="fail"]');
+                correspondingFailCheckbox.disabled = passCheckbox.checked;
+            });
+        });
+    
+        failCheckboxes.forEach(function (failCheckbox) {
+            failCheckbox.addEventListener('change', function () {
+                // Jika checkbox "Fail" dipilih, nonaktifkan checkbox "Pass" yang bersangkutan
+                var correspondingPassCheckbox = failCheckbox.closest('tr').querySelector('input[name^="test_result"][value="pass"]');
+                correspondingPassCheckbox.disabled = failCheckbox.checked;
+            });
+        });
+    });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </div>

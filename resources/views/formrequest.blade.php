@@ -12,7 +12,6 @@
         </div>
 <!--content-->
 <h1 class="text-center p-2">Data Form Request</h1>
-
     <div class="container">
     <a href="/tambahrequest" class="btn btn-success mb-2">Tambah +</a>
         <div class="row">
