@@ -108,20 +108,50 @@
                                                 <input type="checkbox" name="priority[]" id="floatingPriorityLow" value="Low: Impact of this change request on Productivity is minimal." {{ in_array('Low: Impact of this change request on Productivity is minimal.', $selectedPriority) ? 'checked' : '' }} disabled>  Low: Impact of this change request on Productivity is minimal.<br> 
                                             </td>                           
                                         </tr>
-                                        <table class="" width="100%" border="1">
+                                        {{-- <table class="" width="100%" border="1">
+                                            <tr class="p-2">
+                                                <td style="text-align: center;" width="24%"><strong class="p-3">CR Analyst (CRA)</strong></td>
+                                                <td width="76%">	
+                                                <textarea class="form-control" name="cr_analyst" class="form-control" id="floatingCranalyst" placeholder="CR Analyst" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->cr_analyst}}</textarea></td>	
+                                            </tr> --}}
+                                    <table class="" width="100%" border="1">
                                         <tr class="p-2">
-                                            <td style="text-align: center;" width="24%"><strong class="p-3">Justification of change for major development</strong></td>
-                                            <td width="76%">	
-                                            <textarea class="form-control"   name="justifcation_major" class="form-control m-input" id="floatingMajor" placeholder="Justification of change for major development" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->justifcation_major}}</textarea></td>	
-                                        </td>
+                                            <td style="text-align: center; width: 24%">
+                                                <strong class="p-3">Justification of change for Minor development</strong>
+                                            </td>
+                                            <td style="width: auto">
+                                                @foreach ($data->changeMinors as $changeMinors)
+                                                    <table class="table table-bordered mb-0">
+                                                        <tr>
+                                                            <td>
+                                                                {{ $changeMinors->justification }}
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                @endforeach
+                                            </td>
                                         </tr>
-                                        <table class="" width="100%" border="1">
+                                    </table>  
+
+                                    <table class="" width="100%" border="1">
                                         <tr class="p-2">
-                                            <td style="text-align: center;" width="24%"><strong class="p-3">Justification of change for minor development</strong></td>
-                                            <td width="76%">	
-                                            <textarea class="form-control"  name="justifcation_minor" class="form-control m-input" id="floatingMinor" placeholder="Justification of change for minor development" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->justifcation_minor}}</textarea></td>	
-                                        </td>
+                                            <td style="text-align: center; width: 24%">
+                                                <strong class="p-3">Justification of change for major development</strong>
+                                            </td>
+                                            <td style="width: auto">
+                                                @foreach ($data->changeMajors as $changeMajors)
+                                                    <table class="table table-bordered mb-0">
+                                                        <tr>
+                                                            <td>
+                                                                {{ $changeMajors->justification }}
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                @endforeach
+                                            </td>
                                         </tr>
+                                    </table>                                    
+                                    
                                         <table class="" width="100%" border="1">
                                             <tr class="p-2">
                                             <td style="text-align: center;" width="24%"><strong class="p-3">General Context for Data Integration</strong></td>
@@ -147,12 +177,11 @@
                                             <textarea class="form-control" name="support" class="form-control m-input" id="floatingSupport" placeholder="Support from other parties" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
                                             </td>
                                         </tr>
-                                    
-                                        <table class="table table-bordered" style="background: #ffffff;color: rgba(16, 3, 3, 0.844);" style="margin-top: 1em;" border="1">
+
+                                        <table class="table table-bordered" style="margin-top: 1em;">
                                             <thead class="bg-blue">
-                                                <tr style="text-align: center;" border="1">
-                                                    <table class="" width="100%" border="1">
-                                                    <th colspan="2" style="text-align: center;"> 
+                                                <tr style="text-align: center;">
+                                                    <th colspan="2">
                                                         <strong>Infrastruktur dan Security</strong>
                                                     </th>
                                                 </tr>
@@ -164,36 +193,31 @@
                                                     </td>
                                                     <td width="76%">
                                                         <div class="p-2">
-                                                                <tr class="p-2 mb-2">
-                                                                    <td style="text-align: center;" width="24%"><strong class="p-3">Akses User</strong></td>
-                                                                    <td width="76%">
-                                                                    <textarea class="form-control" name="akses_user" class="form-control m-input" id="floatingAkses" value="{{old('akses_user')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                                    </td>
-                                                                </tr>
+                                                            <label class="p-1">
+                                                                Akses User
+                                                            </label>
+                                                            <textarea class="form-control" name="akses_user" class="form-control m-input" id="floatingAkses" value="{{old('akses_user')}}" style="height: 65px" readonly>{{$data->akses_user}}</textarea>
+                                                            <label class="p-1">
+                                                                Topology Server dan Integrasi
+                                                            </label>
+                                                            <textarea class="form-control" name="topologi_server" class="form-control m-input" id="floatingIntegrasi" value="{{old('topologi_server')}}" style="height: 65px" readonly>{{$data->topologi_server}}</textarea>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            <tr>
-                                            <td style="text-align: center;" width="24%"><strong class="p-3">Spesifikasi</strong></td>
+                                                <tr>
+                                                    <td style="text-align: center; vertical-align: middle; width: 24%;">
+                                                        <strong>Spesifikasi</strong>
+                                                    </td>
                                                     <td width="76%">
                                                         <div class="p-2">
-                                                            {{-- <textarea class="form-control" name="spesifikasi_server" class="form-control m-input" id="floatingSpesifikasi" value="{{old('spesifikasi_server')}}" style="height: 65px"></textarea> --}}
-                                                            <tr class="p-2 mb-2">
-                                                                <td style="text-align: center;" width="24%"><strong class="p-3">Spesifikasi Server</strong></td>
-                                                                <td width="76%">
-                                                                <textarea class="form-control" name="spesifikasi_server" class="form-control m-input" id="floatingSpesifikasi" value="{{old('spesifikasi_server')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                                </td>
-                                                            </tr>
-                                                            {{-- <label class="p-1">
+                                                            <label class="p-1">
+                                                                Spesifikasi Server
+                                                            </label>
+                                                            <textarea class="form-control" name="spesifikasi_server" class="form-control m-input" id="floatingSpesifikasi" value="{{old('spesifikasi_server')}}" style="height: 65px"readonly>{{$data->spesifikasi_server}}</textarea>
+                                                            <label class="p-1">
                                                                 Software yang digunakan
                                                             </label>
-                                                            <textarea class="form-control" name="software" class="form-control m-input" id="floatingSoftware" value="{{old('software')}}" style="height: 65px"></textarea> --}}
-                                                            <tr class="p-2 mb-2">
-                                                                <td style="text-align: center;" width="24%"><strong class="p-3">Software yang digunakan</strong></td>
-                                                                <td width="76%">
-                                                                <textarea class="form-control" name="software" class="form-control m-input" id="floatingSoftware" value="{{old('software')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                                </td>
-                                                            </tr>
+                                                            <textarea class="form-control" name="software" class="form-control m-input" id="floatingSoftware" value="{{old('software')}}" style="height: 65px"readonly>{{$data->software}}</textarea>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -203,46 +227,22 @@
                                                     </td>
                                                     <td width="76%">
                                                         <div class="p-2">
-                                                            {{-- <label class="p-1">
+                                                            <label class="p-1">
                                                                 Tipe data yang digunakan
                                                             </label>
-                                                            <textarea class="form-control" name="tipe_data" class="form-control m-input" id="floatingTipe" value="{{old('tipe_data')}}" style="height: 65px"></textarea> --}}
-                                                            <tr class="p-2 mb-2">
-                                                                <td style="text-align: center;" width="24%"><strong class="p-3">Tipe data yang digunakan</strong></td>
-                                                                <td width="76%">
-                                                                <textarea class="form-control" name="tipe_data" class="form-control m-input" id="floatingSoftware" value="{{old('tipe_data')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                                </td>
-                                                            </tr>
-                                                            {{-- <label class="p-1">
+                                                            <textarea class="form-control" name="tipe_data" class="form-control m-input" id="floatingTipe" value="{{old('tipe_data')}}" style="height: 65px"readonly>{{$data->tipe_data}}</textarea>
+                                                            <label class="p-1">
                                                                 Komponen yang di backup
                                                             </label>
-                                                            <textarea class="form-control" name="komponen_backup" class="form-control m-input" id="floatingKomponen" value="{{old('komponen_backup')}}" style="height: 65px"></textarea> --}}
-                                                            <tr class="p-2 mb-2">
-                                                                <td style="text-align: center;" width="24%"><strong class="p-3">Komponen yang di backup</strong></td>
-                                                                <td width="76%">
-                                                                <textarea class="form-control" name="komponen_backup" class="form-control m-input" id="floatingKomponen" value="{{old('komponen_backup')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                                </td>
-                                                            </tr>
-                                                            {{-- <label class="p-1">
+                                                            <textarea class="form-control" name="komponen_backup" class="form-control m-input" id="floatingKomponen" value="{{old('komponen_backup')}}" style="height: 65px"readonly>{{$data->komponen_backup}}</textarea>
+                                                            <label class="p-1">
                                                                 Frekuensi backup
                                                             </label>
-                                                            <textarea class="form-control" name="frekuensi_backup" class="form-control m-input" id="floatingFrekuensi" value="{{old('frekuensi_backup')}}" style="height: 65px"></textarea> --}}
-                                                            <tr class="p-2 mb-2">
-                                                                <td style="text-align: center;" width="24%"><strong class="p-3">Frekuensi backup</strong></td>
-                                                                <td width="76%">
-                                                                <textarea class="form-control" name="frekuensi_backup" class="form-control m-input" id="floatingFrekuensi" value="{{old('frekuensi_backup')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                                </td>
-                                                            </tr>
-                                                            {{-- <label class="p-1">
+                                                            <textarea class="form-control" name="frekuensi_backup" class="form-control m-input" id="floatingFrekuensi" value="{{old('frekuensi_backup')}}" style="height: 65px"readonly>{{$data->frekuensi_backup}}</textarea>
+                                                            <label class="p-1">
                                                                 Lama data backup disimpan
                                                             </label>
-                                                            <textarea class="form-control" name="lama_backup" class="form-control m-input" id="floatingBackup" value="{{old('lama_backup')}}" style="height: 65px"></textarea> --}}
-                                                            <tr class="p-2 mb-2">
-                                                                <td style="text-align: center;" width="24%"><strong class="p-3">Lama data backup disimpan</strong></td>
-                                                                <td width="76%">
-                                                                <textarea class="form-control" name="lama_backup" class="form-control m-input" id="floatingBackup" value="{{old('lama_backup')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                                </td>
-                                                            </tr>
+                                                            <textarea class="form-control" name="lama_backup" class="form-control m-input" id="floatingBackup" value="{{old('lama_backup')}}" style="height: 65px"readonly>{{$data->lama_backup}}</textarea>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -250,12 +250,9 @@
                                                     <td style="text-align: center; vertical-align: middle; width: 24%;">
                                                         <strong>Security</strong>
                                                     </td>
-                                                    {{-- <td class="p-3">
-                                                        <textarea class="form-control" name="security" class="form-control m-input" id="floatingSecurity" value="{{old('security')}}" style="height: 65px;"></textarea>
-                                                    </td> --}}
-                                                    <td width="76%">
-                                                        <textarea class="form-control" name="security" class="form-control m-input" id="floatingSecurity" value="{{old('security')}}"  placeholder="Akses User" style="height: 65px; background: #ffffff;color: rgba(16, 3, 3, 0.844);" value='' readonly>{{$data->support}}</textarea></td>	
-                                                        </td>
+                                                    <td class="p-3">
+                                                        <textarea class="form-control" name="security" class="form-control m-input" id="floatingSecurity" value="{{old('security')}}" style="height: 65px;"readonly>{{$data->security}}</textarea>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>

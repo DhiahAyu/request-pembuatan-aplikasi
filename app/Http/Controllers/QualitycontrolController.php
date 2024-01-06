@@ -112,7 +112,7 @@ class QualitycontrolController extends Controller
 
     public function viewqc($id){
         // $formrequest = Formsrs::with('rfc', 'moduls.requirements')->where('request_id', $id)->first();
-        $data = Formsrs::find($id);
+        $data = Qualitycontrol::with('pengujians', 'penginfrastrukturs')->where('srs_id', $id)->first();
     
         return view('form_qc_readonly', compact('data'));
     }

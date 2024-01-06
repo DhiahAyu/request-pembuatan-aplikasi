@@ -25,11 +25,11 @@ class Formcra extends Model
 
     public function changeMajors()
     {
-        return $this->hasMany(ChangeMajor::class);
+        return $this->hasMany(ChangeMajor::class, 'cra_id');
     }
 
     public function changeMinors()
     {
-        return $this->hasMany(ChangeMinor::class);
+        return $this->hasMany(ChangeMinor::class, 'cra_id');
     }
 }

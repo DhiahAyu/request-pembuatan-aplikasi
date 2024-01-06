@@ -68,12 +68,13 @@ class FormcraController extends Controller
         return redirect()->route('admin')->with('success', 'Data berhasil ditambahkan');
     }
 
-    public function viewcra($id){
-        $data = Formcra::find($id);
+    public function viewcra($id) {
+        $data = Formcra::with('changeMajors', 'changeMinors')->find($id);
         $dataa = User::all();
         $selectedImpactAreas = explode(' , ', $data->impact_areas);
         $selectedPriority = explode(' , ', $data->priority);
     
         return view('form_cra_readonly', compact('data', 'selectedImpactAreas', 'selectedPriority', 'dataa'));
     }
+    
 }
