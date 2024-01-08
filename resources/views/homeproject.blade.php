@@ -44,15 +44,49 @@
                                                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$row->tot_progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$row->tot_progress}}%">{{$row->tot_progress}}%</div>
                                                 </div>
                                             @endif
+                                            
                                         </td>
                                         <td style="vertical-align: middle;">
                                             <div style="display: flex; gap: 5px;">
+                                                @if ($row->tot_progress== null)
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                    Launch demo modal
+                                                  </button>
+                                                 @endif
+                                                 @if ($row->tot_progress != null)
+                                                 <a href="/editprogress/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                                 @endif
                                                 <a href="/viewcra/{{$row->id}}" class="btn btn-info"><i class="fas fa-solid fa-eye" style="color: #ffffff;"></i></a>
-                                                <a href="/editprogress/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                                
                                                 {{-- <a href="/updaterequest/{{$row->id}}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a> --}}
                                                 {{-- BTN EXPORT PDF --}}
                                                 {{-- <a target="_blank" href="/download_pdf/{{$row->id}}" class="btn btn-success mb-1"><i class="fas fa-file-pdf" style="color: #ffffff;"></i></a> --}}
                                             </div>
+                                            <!-- Modal -->
+                                            <form action="{{ route('tambah.pic', $row->id) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                       <input type="text" name="name_pic">
+                                                       <input type="text" name="name_pic">
+                                                       <input type="text" name="name_pic">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </form>
                                         </td>
                                     </tr>
                                     {{-- @endif --}}

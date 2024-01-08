@@ -33,6 +33,11 @@ class Formsrs extends Model
 {
     return $this->hasOne(Qualitycontrol::class, 'srs_id'); // Gantilah QCModel dengan nama model QC yang sesuai
 }
+
+public function pic()
+    {
+        return $this->hasMany(Pic::class, 'srs_id');
+    }
     
 }
 

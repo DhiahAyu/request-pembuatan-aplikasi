@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Requirement;
 use App\Models\Formsrs;
 use App\Models\Modul;
+use App\Models\Pic;
 use Illuminate\Http\Request;
 
 class AddprogressController extends Controller
@@ -75,5 +76,28 @@ class AddprogressController extends Controller
 
     return redirect()->route('project')->with('success', 'Progress updated successfully.');
 }
+
+public function tambahPic(Request $request, $id)
+{
+    // Validasi form jika diperlukan
+    $request->validate([
+        'name_pic' => 'required|array|min:3', // Pastikan memasukkan minimal 3 nama PIC
+        'name_pic.*' => 'required|string|max:255',
+    ]);
+
+    // Proses penyimpanan data PIC ke dalam database
+    // foreach ($request->input('name_pic') as $name) {
+    //     Pic::create(['name_pic' => $name, 'srs_id' => $id]);
+    // }
+
+    foreach ($request->input('name_pic') as $name) {
+        Pic::create(['name_pic' => $name, 'srs_id' => $id]);
+    }
+    dd($request);
+    // Redirect atau kembalikan response sesuai kebutuhan
+    // return redirect()->route('addprogress', ['id' => $id])->with('success', 'PIC berhasil ditambahkan');
+}
+
+
 
 }

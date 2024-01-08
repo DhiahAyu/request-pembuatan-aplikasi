@@ -179,3 +179,7 @@ Route::get('/UAT', function () {
 
 Route::get('/UAT/{id}',[UatController::class, 'viewuta'])->name('viewuta');
 Route::post('/insertdatauat', [UatController::class, 'insertData']);
+
+// Route::post('/addprogress/{id}/tambahpic', 'AddprogressController@tambahPic')->name('addprogress.tambahpic');
+
+Route::post('/tambahpic/{id}', [AddprogressController::class, 'tambahPic'])->name('tambah.pic');

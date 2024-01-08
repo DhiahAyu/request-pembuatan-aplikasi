@@ -29,7 +29,7 @@
                                 <h5 style="color: #343A40;">Nama Aplikasi : {{$data->rfc->nama_aplikasi}}</h5>
                                 {{-- &nbsp; --}}
                                 {{-- <h5 style="color: #343A40;">PIC : </h5> --}}
-                                <form action="{{ route('update.progress', ['id' => $data->id]) }}" method="post">
+                                <form action="{{ route('tambah.pic', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <table class="table table-bordered" style="margin-top: 1em;">
                                         <thead>
