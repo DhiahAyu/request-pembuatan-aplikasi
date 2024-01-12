@@ -68,14 +68,6 @@
                         </div>
                         <div style="vertical-align: middle; text-align:center;">
                             <h3>Riwayat Perubahan</h3>
-                            {{-- <div class="container mb-3" style="text-align: left">
-                                <button type="button" class="btn btn-success" id="addriwayat">
-                                    <i class="fas fa-solid fa-plus" style="color: #ffffff;"></i>
-                                </button>
-                                <button type="button" class="btn btn-success" id="removeriwayat">
-                                    <i class="fas fa-solid fa-minus"></i>
-                                </button>
-                            </div> --}}
                             <table class="table table-bordered col-12">
                                 <thead class="thead-light">
                                     <tr>
@@ -96,7 +88,7 @@
                                             <input type="text" name="textPembuat" class="form-control m-input" id="textPembuat" placeholder="Nama Pembuat Dokumen" value="{{old('textPembuat')}}" style="height: 65px;"></input>
                                         </td>
                                         <td style="vertical-align: middle;">
-                                            <input type="date" name="tanggal_revisi" class="form-control m-input" id="textDisetujuioleh" placeholder="Nama yang Menyetujui" value="{{old('')}}" style="height: 65px;"></input>
+                                            <input type="date" name="tanggal_revisi" class="form-control m-input" id="tanggalrevisi" value="{{old('')}}" style="height: 65px;"></input>
                                         </td>
                                         <td>
                                             <input type="text" name="textDisetujuioleh" class="form-control m-input" id="textDisetujuioleh" placeholder="Nama yang Menyetujui" value="{{old('')}}" style="height: 65px;"></input>

@@ -27,6 +27,12 @@
         <span style="vertical-align: middle; color:rgba(0, 0, 0, 0.600)"> / View CRA</span>
     </div>
     {{-- {{ redirect('/project') }} --}}
+    @elseif(Auth::check() && Auth::user()->role =='planning')
+    <div style="text-align: right; margin-right: 3rem;">
+        <a href="/planning">Home</a>
+        <span style="vertical-align: middle; color:rgba(0, 0, 0, 0.600)"> / View CRA</span>
+    </div>
+    {{-- {{ redirect('/project') }} --}}
 @endif
 
 <div class="content">

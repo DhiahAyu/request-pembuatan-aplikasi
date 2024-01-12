@@ -123,7 +123,7 @@
                                 {{-- <a href="/QC/{{ $row->id }}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a> --}}
                                 @endif
                                 @if ($row->status=='Approved'&& $row->formsfill == '3/3')
-                                <a href="/QC/{{ $row->id }}" class="btn btn-info"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                <a href="/QC/{{ $row->id }}" class="btn btn-info"><i class="fas fa-plus" style="color: #ffffff;"> QC</i></a>
                                 @endif
                                 @if ($row->status=='Pending')
                                     <a href="{{ route('formrequestapprove', $row->id) }}" class="btn btn-success"><i class="bi bi-check-lg"></i></a>

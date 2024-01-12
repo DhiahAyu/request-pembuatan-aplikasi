@@ -12,9 +12,10 @@ class AddprogressController extends Controller
 {
     public function editprogress($id)
     {
-        $data = Formsrs::with('rfc', 'moduls.requirements')->find($id);
+        $data = Formsrs::with('rfc', 'moduls.requirements','pic')->find($id);
         return view('addprogress', compact('data'));
-        return view('addprogress', compact('data'));
+        // dd($data);
+        
     }
 
     public function updateProgress(Request $request, $id)
@@ -26,7 +27,6 @@ class AddprogressController extends Controller
 
     foreach ($request->input('progress') as $requirementId => $progress) {
         // Find the requirement by ID
-        $requirement = Requirement::find($requirementId);
         $requirement = Requirement::find($requirementId);
 
         if ($requirement) {
@@ -72,30 +72,28 @@ class AddprogressController extends Controller
             $formsrs->save();
         }
     }
-    
 
     return redirect()->route('project')->with('success', 'Progress updated successfully.');
 }
 
 public function tambahPic(Request $request, $id)
 {
-    // Validasi form jika diperlukan
-    $request->validate([
-        'name_pic' => 'required|array|min:3', // Pastikan memasukkan minimal 3 nama PIC
-        'name_pic.*' => 'required|string|max:255',
-    ]);
-
-    // Proses penyimpanan data PIC ke dalam database
-    // foreach ($request->input('name_pic') as $name) {
-    //     Pic::create(['name_pic' => $name, 'srs_id' => $id]);
-    // }
-
-    foreach ($request->input('name_pic') as $name) {
-        Pic::create(['name_pic' => $name, 'srs_id' => $id]);
+    $data = Formsrs::find($id);
+    
+    if($data) {
+        $request->validate([
+            'name_pic' => 'required|array|min:3', // Pastikan memasukkan minimal 3 nama PIC
+            'name_pic.*' => 'required|string|max:255',
+        ]);
+        
+        foreach ($request->input('name_pic') as $name) {
+            Pic::create(['name_pic' => $name, 'srs_id' => $id]);
+        }
+        
+        return redirect()->route('editprogress', ['id' => $id])->with('success', 'PIC berhasil di tambahkan');
+    } else {
+        // Tambahkan logika untuk penanganan kesalahan jika data tidak ditemukan
     }
-    dd($request);
-    // Redirect atau kembalikan response sesuai kebutuhan
-    // return redirect()->route('addprogress', ['id' => $id])->with('success', 'PIC berhasil ditambahkan');
 }
 
 

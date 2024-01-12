@@ -22,7 +22,7 @@ class AdminController extends Controller
     public function admin()
     {
         // Calculate the counts
-        $data = Formrequest::paginate(3);
+        $data = Formrequest::paginate(10);
         $totalData = Formrequest::whereIn('status', ['Pending', 'Approved', 'Rejected'])->count();
         $totalApproved = Formrequest::where('status', 'Approved')->count();
         $totalRejected = Formrequest::where('status', 'Rejected')->count();
@@ -32,21 +32,21 @@ class AdminController extends Controller
         return view('homeadmin', compact('data', 'totalData', 'totalApproved', 'totalRejected', 'totalPending'));
     }
     function user(){
-        $data = Formrequest::paginate(3);
+        $data = Formrequest::paginate(10);
         // $data = Formrequest::all();
         return view ('homeuser',compact('data'));
     }
     function project(){
-        $data = Formsrs::paginate(3);
+        $data = Formsrs::paginate(10);
         // dd($data);
         return view('homeproject', compact('data'));
     }    
     function digiport(){
-        $data = Formrequest::paginate(3);
+        $data = Formrequest::paginate(10);
         return view ('homedigiport',compact('data'));
     }
     function planning(){
-        $data = Formcra::paginate(3);
+        $data = Formcra::paginate(10);
         return view ('homeplanning',compact('data'));
     }
 

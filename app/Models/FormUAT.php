@@ -38,6 +38,11 @@ class Formuat extends Model
         'jabatanprogrammer',
         'namatester',
         'jabatantester',
+        'tanggal_revisi',
+        'tanggalttdpjp',
+        'tanggalttdkte',
+        'tanggalttddsp',
+        'tanggalttdba',
     ];
 
     public function formsrs()

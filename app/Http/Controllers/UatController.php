@@ -32,8 +32,9 @@ class UatController extends Controller
             'request_id' => $request->input('request_id'),
             'versi' => $request->input('textVersi'),
             'dibuat_oleh' => $request->input('textPembuat'),
+            'tanggal_revisi' => $request->input('tanggal_revisi'),
             'disetujui_oleh' => $request->input('textDisetujuioleh'),
-            'tanggal_persetujuan' => $request->input('textTanggalPersetujuan'),
+            'tanggal_persetujuan' => $request->input('tanggal_persetujuan'),
             'keterangan' => $request->input('txareaKeterangan'),
             'jumlahtc' => $request->input('textJmlTest'),
             'jumlahtcberhasil' => $request->input('textTestBerhasil'),
@@ -56,6 +57,10 @@ class UatController extends Controller
             'ttdkte' => $this->storeFileAndGetPath($request->file('customFileKTE')),
             'ttdsp' => $this->storeFileAndGetPath($request->file('customFileSP')),
             'ttdba' => $this->storeFileAndGetPath($request->file('customFileBA')),
+            'tanggalttdpjp' => $request->input('tanggalttdpjp'),
+            'tanggalttdkte' => $request->input('tanggalttdkte'),
+            'tanggalttddsp' => $request->input('tanggalttddsp'),
+            'tanggalttdba' => $request->input('tanggalttdba'),
         ]);
 
         // Simpan UAT
@@ -113,8 +118,8 @@ class UatController extends Controller
             'user' => $request->input('textUser')[$key],
         ]);
     }
-        // return redirect()->route('user')->with('success', 'Form UAT Berhasil Dikirim');
-        dd($request->all());
+        return redirect()->route('user')->with('success', 'Form UAT Berhasil Dikirim');
+        // dd($request->all());
     }
     
     private function storeFileAndGetPath($file)

@@ -95,10 +95,6 @@ Route::get('/deletedata/{id}',[FormrequestController::class, 'deletedata'])->nam
 // //HALAMAN FORM CHANGE REQUEST
 // Route::get('/tambahchangerequest',[FormrequestController::class, 'tambahchangerequest'])->name('tambahchangerequest');
 
-
-//DOWNLOAD PDF
-Route::get('/download_pdf/{id}',[FormrequestController::class, 'downloadPdf'])->name('downloadPdf');
-
 // Route::post('/send-rejected-message',[FormrequestController::class, 'sendRejectedMessage'])->name('rejectedMessage');
 Route::post('/pesanreject/{id}', [FormrequestController::class, 'pesanreject'])->name('pesanreject');
 
@@ -182,4 +178,9 @@ Route::post('/insertdatauat', [UatController::class, 'insertData']);
 
 // Route::post('/addprogress/{id}/tambahpic', 'AddprogressController@tambahPic')->name('addprogress.tambahpic');
 
-Route::post('/tambahpic/{id}', [AddprogressController::class, 'tambahPic'])->name('tambah.pic');
+Route::post('/tambahpic/{id}', [AddprogressController::class, 'tambahPic'])->name('tambahpic');
+
+
+
+//DOWNLOAD PDF
+Route::get('/download_pdf/{id}',[FormrequestController::class, 'downloadPdf'])->name('downloadPdf');
